@@ -9,6 +9,29 @@
   "error": "Błąd",
   "success": "Sukces",
   "errors": {
-    "something-went-wrong": "Coś poszło nie tak..."
-  }
+    "something-went-wrong": "Ups! Coś poszło nie tak",
+    "something-went-wrong-description": "Przepraszamy, wystąpił nieoczekiwany błąd podczas przetwarzania Twojego żądania"
+  },
+  "doctor-types": {
+    "pediatrician": "Pediatra",
+    "cardiologist": "Kardiolog",
+    "dermatologist": "Dermatolog",
+    "family-doctor": "Lekarz rodzinny",
+    "physiotherapist": "Fizjoterapeuta ",
+    "neurologist": "Neurolog",
+    "orthopaedist ": "Ortopeda"
+  },
+  "firebase-errors": {
+    "invalid-argument": "Niepoprawny argument"
+  },
+  "edit": "Edytuj",
+  "try-again": "Spróbuj ponownie",
+  "what-can-you-do": "Co możesz zrobić?",
+  "check-your-internet-connection": "Sprawdź połączenie internetowe",
+  "refresh-page": "Odświeź stonę",
+  "try-again-later": "Spróbuj ponownie poźniej",
+  "yes": "Tak",
+  "no": "Nie",
+  "are-you-sure": "Czy jesteś pewny?",
+  "actions": "Akcje"
 }

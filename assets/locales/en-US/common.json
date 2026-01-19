@@ -9,6 +9,29 @@
   "error": "Error",
   "success": "Success",
   "errors": {
-    "something-went-wrong": "Something went wrong..."
-  }
+    "something-went-wrong": "Ups! Something went wrong",
+    "something-went-wrong-description": "Sorry, an unexpected error occurred while processing your request"
+  },
+  "doctor-types": {
+    "pediatrician": "Pediatrician",
+    "cardiologist": "Cardiologist",
+    "dermatologist": "Dermatologist",
+    "family-doctor": "Family Doctor",
+    "physiotherapist": "Physiotherapist",
+    "neurologist": "Neurologist",
+    "orthopaedist": "Orthopaedist"
+  },
+  "firebase-errors": {
+    "invalid-argument": "Invalid argument"
+  },
+  "edit": "Edit",
+  "try-again": "Try again",
+  "what-can-you-do": "What can you do?",
+  "check-your-internet-connection": "Check your internet connection",
+  "refresh-page": "Refresh the page",
+  "try-again-later": "Try again later",
+  "yes": "Yes",
+  "no": "No",
+  "are-you-sure": "Are you sure?",
+  "actions": "Actions"
 }

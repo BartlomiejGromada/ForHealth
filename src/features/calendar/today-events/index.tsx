@@ -21,8 +21,7 @@ function TodayEvent() {
   return (
     <View
       className="bg-card-light dark:bg-card-dark flex flex-row justify-between items-center p-4 rounded-md
-      gap-x-4 pl-6"
-    >
+      gap-x-4 pl-6">
       <View className="h-10 border-r border-r-gray-200 pr-2 justify-center">
         <TextStyled type="bold" className="text-primary-500 text-center">
           {"10:00"}
@@ -33,7 +32,7 @@ function TodayEvent() {
         <TextStyled type="bold" className=" dark:text-typography-white">
           {"Wizyta lekarska"}
         </TextStyled>
-        <TextStyled className="text-sm color-typography-400">
+        <TextStyled className="text-sm color-typography-500">
           {"Kardiolog - dr Anna Kowalska"}
         </TextStyled>
       </View>

@@ -6,7 +6,7 @@ import { saveInSecureStore } from "@/utils/secure-store";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import Toast from "react-native-toast-message";
-import { signInRequest } from "../api/auth-api";
+import { signInRequest } from "../api";
 
 export default function useSignIn() {
   const { t } = useTranslation();

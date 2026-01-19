@@ -1,5 +1,6 @@
 import { User } from "@/types/Firebase";
 import { StateCreator } from "zustand";
+import { AppState } from ".";
 
 export type AuthSlice = {
   user: User | null;
@@ -8,7 +9,7 @@ export type AuthSlice = {
   logout: () => void;
 };
 
-export const createAuthSlice: StateCreator<AuthSlice, [], [], AuthSlice> = set => ({
+export const createAuthSlice: StateCreator<AppState, [], [], AuthSlice> = set => ({
   user: null,
   isLoggedIn: false,
   login: user =>

@@ -16,7 +16,7 @@ const initalizeI18N = async () => {
     resources: resources,
     lng: savedLanguage ?? "en",
     fallbackLng: "en",
-    ns: ["common", "home", "calendar", "add", "profile", "auth"],
+    ns: ["common", "home", "calendar", "add", "profile", "auth", "visits"],
     defaultNS: "common",
     fallbackNS: "common",
     nsSeparator: ".",

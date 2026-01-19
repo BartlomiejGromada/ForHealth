@@ -1,18 +1,11 @@
 import { COLORS } from "@/constants/Colors";
 import { useAppTheme } from "@/providers/ThemeProvider";
-import { useAppStore } from "@/store";
-import { Redirect, Tabs } from "expo-router";
+import { Tabs } from "expo-router";
 import { CalendarIcon, HouseIcon, PlusCircleIcon, UserIcon } from "lucide-react-native";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
 export default function LoggedLayout() {
-  const isLoggedIn = useAppStore(state => state.isLoggedIn);
-
-  if (!isLoggedIn) {
-    return <Redirect href={"/(app)/auth-welcome"} />;
-  }
-
   return <RootTabs />;
 }
 

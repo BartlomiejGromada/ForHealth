@@ -1,0 +1,13 @@
+{
+  "details-of-visit": "Details of the visit",
+  "information-about-visit": "Information about the visit",
+  "additional-options": "Additional options",
+  "cancel-visit": "Cancel visit",
+  "remove-visit": "Remove visit",
+  "mark-visit-as-finished": "Mark visit as finished",
+  "statuses": {
+    "new": "New",
+    "canceled": "Canceled",
+    "finished": "Finished"
+  }
+}

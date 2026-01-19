@@ -1,57 +1,69 @@
+import TextStyled from "@/components/ui/TextStyled";
 import { COLORS } from "@/constants/Colors";
-import { Visit } from "@/types/Visit";
+import { formatDateTime } from "@/helpers/dates";
+import { doctorTypeTranslationKeys } from "@/helpers/enums";
+import { DoctorProfession } from "@/types/Visit";
+import { router } from "expo-router";
 import { ClockIcon, HandIcon, StethoscopeIcon } from "lucide-react-native";
-import React, { useState } from "react";
-import { Text, View } from "react-native";
+import React from "react";
+import { useTranslation } from "react-i18next";
+import { ActivityIndicator, View } from "react-native";
 import { ContainerCard } from "../components/ContainerCard";
 import ContainerSection from "../components/ContainerSection";
-import { useTranslation } from "react-i18next";
-import TextStyled from "@/components/ui/TextStyled";
+import useUpcomingVisits from "../hooks/useUpcomingVisits";
+
+const UPCOMING_VISITS_COUNT = 3;
 
 export default function UpcomingVisits() {
   const { t } = useTranslation();
 
-  // TODO
-  const [visitsMock, setVisitsMock] = useState<Visit[]>([
-    {
-      id: 1,
-      Icon: StethoscopeIcon,
-      specialization: "Kardiolog",
-      doctor: "dr Anna Kowalska",
-      date: new Date(),
-    },
-    {
-      id: 2,
-      Icon: HandIcon,
-      specialization: "Rehabilitant",
-      doctor: "dr Anna Kowalska",
-      date: new Date(),
-    },
-  ]);
+  const { visits, isLoading } = useUpcomingVisits({ count: UPCOMING_VISITS_COUNT });
 
   return (
     <ContainerSection
       title={t("home.upcoming-visits")}
-      onPressAction={() => {}}
-    >
+      onPressAction={() => {
+        router.navigate("/standalone/visits-list");
+      }}>
       <View className="flex gap-y-4">
-        {visitsMock.map((visit) => (
-          <ContainerCard
-            key={visit.id}
-            Icon={visit.Icon}
-            title={visit.specialization}
-            subtitle={visit.doctor}
-            description={
-              <View className="flex flex-row items-center gap-x-1">
-                <ClockIcon size={14} color={COLORS.typography[400]} />
-                <TextStyled className="text-sm color-typography-400">
-                  {visit.date.toLocaleString()}
-                </TextStyled>
-              </View>
-            }
-          />
-        ))}
+        {isLoading ? (
+          <ActivityIndicator size={"large"} className="color-primary-300" />
+        ) : visits.length === 0 ? (
+          <TextStyled className="text-center color-typography-500">
+            {t("home.no-upcoming-visits")}
+          </TextStyled>
+        ) : (
+          visits.map(visit => (
+            <ContainerCard
+              key={visit.id}
+              Icon={
+                visit.doctor.profession === DoctorProfession.Physiotherapist
+                  ? HandIcon
+                  : StethoscopeIcon
+              }
+              title={t(doctorTypeTranslationKeys[visit.doctor.profession])}
+              subtitle={`${visit.doctor.name}`}
+              description={
+                <View className="flex flex-row items-center gap-x-1">
+                  <ClockIcon size={14} color={COLORS.typography[400]} />
+                  <TextStyled className="text-sm color-typography-500">
+                    {formatDateTime(visit.date)}
+                  </TextStyled>
+                </View>
+              }
+              onPress={() =>
+                router.push({
+                  pathname: "/standalone/visit-details",
+                  params: {
+                    id: visit.id,
+                  },
+                })
+              }
+            />
+          ))
+        )}
       </View>
+      )
     </ContainerSection>
   );
 }

@@ -5,7 +5,7 @@ import {
   ResponseStatus,
   User,
 } from "@/types/Firebase";
-import { auth } from "@/utils/firebase/firebaseConfig";
+import { auth } from "@/firebase/firebaseConfig";
 import {
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,

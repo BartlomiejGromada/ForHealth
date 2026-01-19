@@ -1,7 +1,7 @@
 import TextStyled from "@/components/ui/TextStyled";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 
 // TODO: Implement logic
 export default function Table() {
@@ -25,10 +25,8 @@ export default function Table() {
 function TableRow({ title, value }: { title: string; value: string }) {
   return (
     <View className="flex flex-row h-10 border-b border-b-gray-100 pr-2 justify-center">
-      <TextStyled className="w-1/2 color-typography-400">{title}</TextStyled>
-      <TextStyled className="w-1/2 text-sm color-typography-400 text-right">
-        {value}
-      </TextStyled>
+      <TextStyled className="w-1/2 color-typography-500">{title}</TextStyled>
+      <TextStyled className="w-1/2 text-sm color-typography-500 text-right">{value}</TextStyled>
     </View>
   );
 }

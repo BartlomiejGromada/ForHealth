@@ -3,7 +3,7 @@ import { ResponseStatus } from "@/types/Firebase";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import Toast from "react-native-toast-message";
-import { resetPasswordRequest } from "../api/auth-api";
+import { resetPasswordRequest } from "../api";
 
 export default function useResetPassword() {
   const { t } = useTranslation();

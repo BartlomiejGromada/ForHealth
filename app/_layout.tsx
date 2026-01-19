@@ -3,9 +3,10 @@ import { ThemeProvider } from "@/providers/ThemeProvider";
 import "@/utils/language/i18nConfig"; // This line imports the i18n configuration
 import { toastConfig } from "@/utils/toast-message/toastConfig";
 import { useFonts } from "expo-font";
-import { Slot } from "expo-router";
+import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
+import { PaperProvider } from "react-native-paper";
 import "react-native-reanimated";
 import Toast from "react-native-toast-message";
 import "../global.css";
@@ -35,8 +36,10 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider>
-      <Slot />
-      <Toast config={toastConfig} />
+      <PaperProvider>
+        <Stack screenOptions={{ headerShown: false }} />
+        <Toast config={toastConfig} />
+      </PaperProvider>
     </ThemeProvider>
   );
 }

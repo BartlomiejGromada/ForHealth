@@ -80,7 +80,7 @@ const FormContainer = ({
         <TextStyled type="bold" className="text-3xl dark:color-typography-white">
           {t("auth.registration")}
         </TextStyled>
-        <TextStyled className="text-sm color-typography-400">
+        <TextStyled className="text-sm color-typography-500">
           {`${t("auth.create-new-account-and-take-care-of-your-health")}`}
         </TextStyled>
       </View>
