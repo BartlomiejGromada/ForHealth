@@ -15,4 +15,7 @@ export type VisitFirestore = {
 
 export type ExerciseFirestore = {
   name: string;
+  date: Timestamp;
+  durationInMin: number;
+  intensity: string;
 };

@@ -5,26 +5,37 @@ import React, { Fragment } from "react";
 import { useTranslation } from "react-i18next";
 import { ActivityIndicator, View } from "react-native";
 import useUpcomingVisitsCount from "../hooks/useUpcomingVisitsCount";
+import useExercisesCount from "../hooks/useExercisesCount";
+import { endOfWeek, startOfWeek } from "date-fns";
+
+const range = {
+  from: startOfWeek(new Date(), { weekStartsOn: 1 }),
+  to: endOfWeek(new Date(), { weekStartsOn: 1 }),
+};
 
 export default function Summary() {
   const { t } = useTranslation();
 
-  const { count, isLoading: isLoadingCount } = useUpcomingVisitsCount();
+  const { count: upcomingVisitsCount, isLoading: isLoadingUpcomingVisitsCount } =
+    useUpcomingVisitsCount();
+  const { count: exercisesCount, isLoading: isLoadingExercisesCount } = useExercisesCount({
+    range,
+  });
 
   return (
     <View className="gap-y-4">
       <View className="flex flex-row justify-between gap-x-2">
         <SummarySquare
           Icon={HeartIcon}
-          count={count}
+          count={upcomingVisitsCount}
           text={t("home.upcoming-visits")}
-          isLoading={isLoadingCount}
+          isLoading={isLoadingUpcomingVisitsCount}
         />
         <SummarySquare
           Icon={SquareActivityIcon}
-          count={4}
+          count={exercisesCount}
           text={t("home.training-this-week")}
-          isLoading={false}
+          isLoading={isLoadingExercisesCount}
         />
       </View>
     </View>

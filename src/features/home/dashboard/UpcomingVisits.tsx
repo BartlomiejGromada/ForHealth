@@ -12,9 +12,10 @@ import { ContainerCard } from "../components/ContainerCard";
 import ContainerSection from "../components/ContainerSection";
 import useUpcomingVisits from "../hooks/useUpcomingVisits";
 
+const UPCOMING_VISITS_COUNT = 3;
+
 export default function UpcomingVisits() {
   const { t } = useTranslation();
-  const UPCOMING_VISITS_COUNT = 3;
 
   const { visits, isLoading } = useUpcomingVisits({ count: UPCOMING_VISITS_COUNT });
 
@@ -27,6 +28,10 @@ export default function UpcomingVisits() {
       <View className="flex gap-y-4">
         {isLoading ? (
           <ActivityIndicator size={"large"} className="color-primary-300" />
+        ) : visits.length === 0 ? (
+          <TextStyled className="text-center color-typography-500">
+            {t("home.no-upcoming-visits")}
+          </TextStyled>
         ) : (
           visits.map(visit => (
             <ContainerCard
@@ -58,6 +63,7 @@ export default function UpcomingVisits() {
           ))
         )}
       </View>
+      )
     </ContainerSection>
   );
 }
