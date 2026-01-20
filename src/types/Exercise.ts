@@ -3,5 +3,11 @@ export type Exercise = {
   name: string;
   date: Date;
   durationInMin: number;
-  intensity: string;
+  intensity: IntensityEnum;
 };
+
+export enum IntensityEnum {
+  LOW = "low",
+  MEDIUM = "medium",
+  HIGH = "high",
+}

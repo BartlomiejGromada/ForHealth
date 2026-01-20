@@ -1,17 +1,17 @@
 export enum DoctorProfession {
-  Pediatrician = 0,
-  Cardiologist = 1,
-  Dermatologist = 2,
-  FamilyDoctor = 3,
-  Physiotherapist = 4,
-  Neurologist = 5,
-  Orthopaedist = 6,
+  Pediatrician = "pediatrician",
+  Cardiologist = "cardiologist",
+  Dermatologist = "dermatologist",
+  FamilyDoctor = "family_doctor",
+  Physiotherapist = "physiotherapist",
+  Neurologist = "neurologist",
+  Orthopaedist = "orthopaedist",
 }
 
 export enum VisitStatus {
-  New = 0,
-  Canceled = 1,
-  Finished = 2,
+  New = "new",
+  Canceled = "canceled",
+  Finished = "finished",
 }
 
 export type Visit = {

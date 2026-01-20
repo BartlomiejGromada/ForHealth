@@ -1,14 +1,16 @@
+import IntensityIndicator from "@/components/IntensityIndicator";
 import TextStyled from "@/components/ui/TextStyled";
-import { SquareActivityIcon } from "lucide-react-native";
+import { endOfWeek, startOfWeek } from "date-fns";
+import { router } from "expo-router";
+import { SquareActivityIcon, TimerIcon } from "lucide-react-native";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { View } from "react-native";
+import { ActivityIndicator } from "react-native-paper";
 import { ContainerCard } from "../components/ContainerCard";
 import ContainerSection from "../components/ContainerSection";
+import IconText from "../components/IconText";
 import useExercises from "../hooks/useExercises";
-import { router } from "expo-router";
-import { ActivityIndicator } from "react-native-paper";
-import { startOfWeek, endOfWeek } from "date-fns";
 
 const LAST_VISITS_COUNT = 3;
 
@@ -47,11 +49,9 @@ export default function LastExercises() {
               subtitle={exercise.date.toLocaleDateString()}
               description={
                 <View className="w-[80%] flex flex-row justify-between">
-                  <TextStyled className="text-sm color-typography-500">{`${exercise.durationInMin} min`}</TextStyled>
+                  <IconText text={`${exercise.durationInMin} min`} icon={TimerIcon} />
 
-                  <TextStyled className="text-sm color-typography-500">
-                    {`${t("home.intensity")}: ${exercise.intensity}`}
-                  </TextStyled>
+                  <IntensityIndicator intensity={exercise.intensity} />
                 </View>
               }
               onPress={() =>

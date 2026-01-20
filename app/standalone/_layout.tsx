@@ -1,6 +1,18 @@
+import HeaderOptionsButton from "@/components/HeaderOptionsButton";
+import { HeaderOption, HeaderOptionsProvider } from "@/contexts/HeaderOptionsContext";
 import { Stack } from "expo-router";
-import React from "react";
+import React, { useState } from "react";
 
 export default function StandaloneLayout() {
-  return <Stack />;
+  const [options, setOptions] = useState<HeaderOption[]>([]);
+
+  return (
+    <HeaderOptionsProvider value={{ options, setOptions }}>
+      <Stack
+        screenOptions={{
+          headerRight: () => (options.length ? <HeaderOptionsButton /> : null),
+        }}
+      />
+    </HeaderOptionsProvider>
+  );
 }

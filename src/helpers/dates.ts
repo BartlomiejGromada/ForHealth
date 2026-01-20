@@ -6,7 +6,7 @@ export const formatDateTime = (date: Date) => {
   const hours = String(date.getHours()).padStart(2, "0"); // Hour
   const minutes = String(date.getMinutes()).padStart(2, "0"); // Minute
 
-  return `${day}-${month}-${year} ${hours}:${minutes}`;
+  return `${day}.${month}.${year} ${hours}:${minutes}`;
 };
 
 export const todayDateTime = () => {
