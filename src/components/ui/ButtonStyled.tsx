@@ -1,3 +1,4 @@
+import { COLORS } from "@/constants/Colors";
 import { LucideIcon } from "lucide-react-native";
 import React from "react";
 import { ActivityIndicator, TouchableOpacity, TouchableOpacityProps, View } from "react-native";
@@ -25,18 +26,35 @@ export default function ButtonStyled({
     outlined: "border border-primary-500 bg-card-light dark:bg-card-dark",
   };
 
+  const spinnerColor = type === "primary" ? COLORS.white : COLORS.primary[500];
+
   return (
-    <TouchableOpacity activeOpacity={0.6} {...rest}>
+    <TouchableOpacity activeOpacity={0.6} disabled={isLoading} {...rest}>
       <View
-        className={`rounded-md flex flex-row justify-center items-center gap-2 p-4 ${styles[type]}  ${rest.disabled && "opacity-60"}`}>
+        className={`relative rounded-md flex-row justify-center items-center px-4 py-4 ${
+          styles[type]
+        } ${rest.disabled && "opacity-60"}`}>
         <TextStyled
-          className={`${type === "primary" ? "text-typography-white dark:text-black" : "text-primary-500"}`}>
+          className={`${
+            type === "primary" ? "text-typography-white dark:text-black" : "text-primary-500"
+          }`}>
           {text}
         </TextStyled>
 
-        {isLoading && <ActivityIndicator className="color-white dark:color-black" />}
-
-        {Icon && <Icon.name color={Icon.color} />}
+        {(isLoading || Icon) && (
+          <View
+            style={{
+              position: "absolute",
+              right: "50%",
+              transform: [{ translateX: 40 }],
+            }}>
+            {isLoading ? (
+              <ActivityIndicator size="small" color={spinnerColor} />
+            ) : (
+              Icon && <Icon.name color={Icon.color} size={18} />
+            )}
+          </View>
+        )}
       </View>
     </TouchableOpacity>
   );

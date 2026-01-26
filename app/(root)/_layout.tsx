@@ -1,3 +1,4 @@
+import ConfirmationModal from "@/components/ConfirmationModal";
 import { COLORS } from "@/constants/Colors";
 import { useAppTheme } from "@/providers/ThemeProvider";
 import { Tabs } from "expo-router";
@@ -6,7 +7,12 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 
 export default function LoggedLayout() {
-  return <RootTabs />;
+  return (
+    <>
+      <RootTabs />
+      <ConfirmationModal />
+    </>
+  );
 }
 
 const RootTabs = () => {

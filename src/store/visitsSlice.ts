@@ -7,7 +7,7 @@ export type VisitsSlice = {
   detailsOfVisit?: Visit | null;
   setDetaislOfVisit: (visit: Visit | null) => void;
   changeVisitStatus: (newStatus: VisitStatus) => void;
-  removeVisit: (visitId: string) => void;
+  deleteVisit: (visitId: string) => void;
 };
 
 export const createVisitSlice: StateCreator<AppState, [], [], VisitsSlice> = set => ({
@@ -30,7 +30,7 @@ export const createVisitSlice: StateCreator<AppState, [], [], VisitsSlice> = set
     set({
       detailsOfVisit: visit,
     }),
-  removeVisit: visitId =>
+  deleteVisit: visitId =>
     set(state => ({
       visits: state.visits.filter(visit => visit.id !== visitId),
       detailsVisit: state.detailsOfVisit?.id === visitId ? undefined : state.detailsOfVisit,

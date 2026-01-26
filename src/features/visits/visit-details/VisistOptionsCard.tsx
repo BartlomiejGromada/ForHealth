@@ -1,4 +1,3 @@
-import ConfirmationModal from "@/components/ui/ConfirmationModal";
 import TextStyled from "@/components/ui/TextStyled";
 import { VisitStatus } from "@/types/Visit";
 import {
@@ -51,7 +50,7 @@ export default function VisistOptionsCard({ visitId }: VisistOptionsCardProps) {
 
       <ActionMenu visitId={visitId} />
 
-      {isModalVisible && (
+      {/* {isModalVisible && (
         <ConfirmationModal
           visible={isModalVisible}
           onConfirm={() => {}}
@@ -59,7 +58,7 @@ export default function VisistOptionsCard({ visitId }: VisistOptionsCardProps) {
             setIsModalVisible(false);
           }}
         />
-      )}
+      )} */}
     </View>
   );
 }

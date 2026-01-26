@@ -16,7 +16,7 @@ export async function visitByIdRequest({
   try {
     const doc = await getDoc(visitByIdDoc(userId, visitId));
 
-    if (doc === undefined) {
+    if (!doc.exists()) {
       return {
         status: ResponseStatus.SUCCESS,
         payload: null,

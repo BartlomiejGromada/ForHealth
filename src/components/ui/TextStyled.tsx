@@ -1,6 +1,6 @@
+import clsx from "clsx";
 import React from "react";
 import { Text, TextProps } from "react-native";
-import clsx from "clsx";
 
 export type TextType = "regular" | "bold" | "light" | "thin";
 
