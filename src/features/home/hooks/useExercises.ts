@@ -1,5 +1,5 @@
 import { useFetch } from "@/hooks/useFetch";
-import { useUserId } from "@/hooks/useUserId";
+import { useLoggedUserId } from "@/hooks/useLoggedUserId";
 import { Exercise } from "@/types/Exercise";
 import { useCallback, useEffect, useState } from "react";
 import { getExercisesRequest } from "../api/exercisesApi";
@@ -11,7 +11,7 @@ type useExercisesProps = {
 };
 
 export default function useExercises({ count, range }: useExercisesProps) {
-  const userId = useUserId();
+  const userId = useLoggedUserId();
 
   const [exercises, setExercises] = useState<Exercise[]>([]);
 
@@ -30,7 +30,7 @@ export default function useExercises({ count, range }: useExercisesProps) {
   });
 
   useEffect(() => {
-    fetch();
+    void fetch();
   }, [fetch]);
 
   return { exercises, isLoading, isSuccess };

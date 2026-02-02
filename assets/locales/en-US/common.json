@@ -34,5 +34,7 @@
   "no": "No",
   "are-you-sure": "Are you sure?",
   "actions": "Actions",
-  "cancel": "Cancel"
+  "cancel": "Cancel",
+  "logout": "Log out",
+  "logout-action": "Action log out"
 }

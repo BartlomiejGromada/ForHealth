@@ -1,13 +1,13 @@
+import ScreenWrapper from "@/components/ScreenWrapper";
 import React from "react";
-import { View } from "react-native";
-import Table from "./Table";
 import Badge from "./Badge";
+import Table from "./Table";
 
 export default function ProfileInfo() {
   return (
-    <View className="gap-4">
+    <ScreenWrapper>
       <Badge />
       <Table />
-    </View>
+    </ScreenWrapper>
   );
 }

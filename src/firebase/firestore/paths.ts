@@ -1,5 +1,5 @@
 import { dataPoint, docPoint } from "./helpers";
-import { ExerciseFirestore, VisitFirestore } from "./types";
+import { ExerciseFirestore, ProfileDetailsFirestore, VisitFirestore } from "./types";
 
 export const collections = {
   visitsByUserId: (userId: string) => dataPoint<VisitFirestore>(`users/${userId}/visits`),
@@ -9,4 +9,5 @@ export const collections = {
 export const documents = {
   visitById: (userId: string, visitId: string) =>
     docPoint<VisitFirestore>(`users/${userId}/visits/${visitId}`),
+  profileDetails: (userId: string) => docPoint<ProfileDetailsFirestore>(`users/${userId}`),
 };

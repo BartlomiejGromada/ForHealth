@@ -18,5 +18,6 @@
   "fab": {
     "mark-as-completed": "Zakończona",
     "mark-as-cancelled": "Anulowana"
-  }
+  },
+  "open-details-visit": "Otwiera szczegóły wizyty"
 }

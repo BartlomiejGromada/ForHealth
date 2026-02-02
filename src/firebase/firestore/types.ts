@@ -19,3 +19,11 @@ export type ExerciseFirestore = {
   durationInMin: number;
   intensity: string;
 };
+
+export type ProfileDetailsFirestore = {
+  firstName: string | null;
+  lastName: string | null;
+  dateOfBirth: Timestamp | null;
+  height: number | null;
+  weight: number | null;
+};

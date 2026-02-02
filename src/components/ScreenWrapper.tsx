@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import { LucideIcon } from "lucide-react-native";
 import React from "react";
-import { SafeAreaView, ScrollView, View } from "react-native";
+import { PressableProps, SafeAreaView, ScrollView, View } from "react-native";
 import IconPressable from "./ui/IconPressable";
 import TextStyled from "./ui/TextStyled";
 
@@ -12,9 +12,9 @@ export default function ScreenWrapper({
 }: {
   children: React.ReactNode;
   title?: string;
-  Icon?: {
+  Icon?: PressableProps & {
     name: LucideIcon;
-    onPress: () => void;
+    tooltip: string;
     color?: string;
   };
 }) {
@@ -30,7 +30,9 @@ export default function ScreenWrapper({
             </TextStyled>
           )}
 
-          {Icon && <IconPressable Icon={Icon.name} onPress={Icon.onPress} color={Icon.color} />}
+          {Icon && (
+            <IconPressable {...Icon} Icon={Icon.name} color={Icon.color} tooltip={Icon.tooltip} />
+          )}
         </View>
 
         <View className="w-full h-full gap-4 pb-4">{children}</View>

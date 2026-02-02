@@ -1,5 +1,5 @@
 import { useFetch } from "@/hooks/useFetch";
-import { useUserId } from "@/hooks/useUserId";
+import { useLoggedUserId } from "@/hooks/useLoggedUserId";
 import { Visit } from "@/types/Visit";
 import { useCallback, useEffect, useState } from "react";
 import { getUpcomingVisitsRequest } from "../api/upcomigVisitsApi";
@@ -9,7 +9,7 @@ type useUpcomingVisitsProps = {
 };
 
 export default function useUpcomingVisits({ count }: useUpcomingVisitsProps) {
-  const userId = useUserId();
+  const userId = useLoggedUserId();
 
   const [visits, setVisits] = useState<Visit[]>([]);
 
@@ -28,7 +28,7 @@ export default function useUpcomingVisits({ count }: useUpcomingVisitsProps) {
   });
 
   useEffect(() => {
-    fetch();
+    void fetch();
   }, [fetch]);
 
   return { visits, isLoading, isSuccess };

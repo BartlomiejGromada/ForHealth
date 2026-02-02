@@ -18,5 +18,6 @@
   "fab": {
     "mark-as-completed": "Completed",
     "mark-as-cancelled": "Cancelled"
-  }
+  },
+  "open-details-visit": "Opens visit details"
 }

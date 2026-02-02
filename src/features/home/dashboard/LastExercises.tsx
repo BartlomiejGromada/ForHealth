@@ -62,6 +62,8 @@ export default function LastExercises() {
                   },
                 })
               }
+              accessibilityHint={t("exercises.open-details-exercise")}
+              accessibilityLabel={`${exercise.name}, ${exercise.date.toLocaleDateString()}`}
             />
           ))
         )}

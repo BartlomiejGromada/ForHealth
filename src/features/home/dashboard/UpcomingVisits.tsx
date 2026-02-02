@@ -52,6 +52,8 @@ export default function UpcomingVisits() {
                   },
                 })
               }
+              accessibilityHint={t("visits.open-details-visit")}
+              accessibilityLabel={`${visit.doctor}, ${visit.date.toLocaleDateString()}`}
             />
           ))
         )}
