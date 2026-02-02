@@ -1,5 +1,5 @@
 import { useFetch } from "@/hooks/useFetch";
-import { useUserId } from "@/hooks/useUserId";
+import { useLoggedUserId } from "@/hooks/useLoggedUserId";
 import { Visit } from "@/types/Visit";
 import { useCallback, useEffect, useState } from "react";
 import { visitsByUserIdRequest } from "../api/visitsByUserIdRequest";
@@ -7,7 +7,7 @@ import { visitsByUserIdRequest } from "../api/visitsByUserIdRequest";
 type useVisitsProps = {};
 
 export const useVisits = ({}: useVisitsProps) => {
-  const userId = useUserId();
+  const userId = useLoggedUserId();
 
   const [visits, setVisits] = useState<Visit[] | null>();
 

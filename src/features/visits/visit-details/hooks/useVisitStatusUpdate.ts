@@ -1,5 +1,5 @@
 import { useMutation } from "@/hooks/useMutation";
-import { useUserId } from "@/hooks/useUserId";
+import { useLoggedUserId } from "@/hooks/useLoggedUserId";
 import { useAppStore } from "@/store";
 import { VisitStatus } from "@/types/Visit";
 import { useCallback } from "react";
@@ -10,7 +10,7 @@ type useVisitStatusUpdateProps = {
 };
 
 export const useVisitStatusUpdate = ({ visitId }: useVisitStatusUpdateProps) => {
-  const userId = useUserId();
+  const userId = useLoggedUserId();
   const changeVisitStatus = useAppStore(state => state.changeVisitStatus);
 
   const updateVisitStatus = useCallback(

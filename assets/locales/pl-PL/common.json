@@ -35,5 +35,7 @@
   "are-you-sure": "Czy jesteś pewny?",
   "actions": "Akcje",
   "delete": "Usuń",
-  "cancel": "Anuluj"
+  "cancel": "Anuluj",
+  "logout": "Wyloguj się",
+  "logout-action": "Akcja wyloguj się"
 }

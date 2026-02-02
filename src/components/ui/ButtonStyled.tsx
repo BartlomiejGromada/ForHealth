@@ -1,7 +1,7 @@
 import { COLORS } from "@/constants/Colors";
 import { LucideIcon } from "lucide-react-native";
 import React from "react";
-import { ActivityIndicator, TouchableOpacity, TouchableOpacityProps, View } from "react-native";
+import { ActivityIndicator, Pressable, TouchableOpacityProps, View } from "react-native";
 import TextStyled from "./TextStyled";
 
 type ButtonStyledProps = TouchableOpacityProps & {
@@ -29,7 +29,7 @@ export default function ButtonStyled({
   const spinnerColor = type === "primary" ? COLORS.white : COLORS.primary[500];
 
   return (
-    <TouchableOpacity activeOpacity={0.6} disabled={isLoading} {...rest}>
+    <Pressable accessibilityRole="button" disabled={isLoading} {...rest}>
       <View
         className={`relative rounded-md flex-row justify-center items-center px-4 py-4 ${
           styles[type]
@@ -56,6 +56,6 @@ export default function ButtonStyled({
           </View>
         )}
       </View>
-    </TouchableOpacity>
+    </Pressable>
   );
 }

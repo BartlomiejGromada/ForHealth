@@ -1,105 +1,118 @@
 import { FIREBASE_UNKNOWN_ERROR_CODE, FIREBASE_UNKNOWN_ERROR_MESSAGE } from "@/constants/Firebase";
-import {
-  FirebaseReponse,
-  FirebaseReponseWithoutPayload,
-  ResponseStatus,
-  User,
-} from "@/types/Firebase";
 import { auth } from "@/firebase/firebaseConfig";
+import { profileDetailsDoc } from "@/firebase/firestore/documents";
+import { FirebaseReponse, FirebaseReponseWithoutPayload, ResponseStatus } from "@/types/Firebase";
+import { User } from "@/types/User";
 import {
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
-  updateProfile,
 } from "firebase/auth";
+import { getDoc } from "firebase/firestore";
 
 export async function signInRequest(
   email: string,
   password: string
 ): Promise<FirebaseReponse<User>> {
-  return signInWithEmailAndPassword(auth, email, password)
-    .then(userCredential => {
-      const user = userCredential.user;
+  try {
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
 
-      const reponse: FirebaseReponse<User> = {
-        status: ResponseStatus.SUCCESS,
-        payload: {
-          uid: user.uid,
-          name: user.displayName ?? "-",
-          email: user.email ?? "-",
+    const firebaseUser = userCredential.user;
+
+    const profileSnapshot = await getDoc(profileDetailsDoc(firebaseUser.uid));
+
+    const profileDetails = profileSnapshot.exists()
+      ? profileSnapshot.data()
+      : {
+          firstName: null,
+          lastName: null,
+          dateOfBirth: null,
+          height: null,
+          weight: null,
+        };
+
+    const response: FirebaseReponse<User> = {
+      status: ResponseStatus.SUCCESS,
+      payload: {
+        uid: firebaseUser.uid,
+        email: firebaseUser.email ?? "-",
+        details: {
+          ...profileDetails,
+          dateOfBirth: profileDetails.dateOfBirth?.toDate() ?? null,
         },
-      };
+      },
+    };
 
-      return reponse;
-    })
-    .catch(error => {
-      const reponseError: FirebaseReponse<User> = {
-        status: ResponseStatus.ERROR,
-        error: {
-          code: (error.code as string) ?? FIREBASE_UNKNOWN_ERROR_CODE,
-          message: (error.message as string) ?? FIREBASE_UNKNOWN_ERROR_MESSAGE,
-        },
-      };
+    return response;
+  } catch (error: any) {
+    const responseError: FirebaseReponse<User> = {
+      status: ResponseStatus.ERROR,
+      error: {
+        code: error?.code ?? FIREBASE_UNKNOWN_ERROR_CODE,
+        message: error?.message ?? FIREBASE_UNKNOWN_ERROR_MESSAGE,
+      },
+    };
 
-      return reponseError;
-    });
+    return responseError;
+  }
 }
 
 export async function signUpRequest(
   email: string,
-  password: string,
-  displayName: string
+  password: string
 ): Promise<FirebaseReponse<User>> {
-  return createUserWithEmailAndPassword(auth, email, password)
-    .then(userCredential => {
-      const user = userCredential.user;
+  try {
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
 
-      updateProfile(user, {
-        displayName,
-      });
+    const user = userCredential.user;
 
-      const reponse: FirebaseReponse<User> = {
-        status: ResponseStatus.SUCCESS,
-        payload: {
-          uid: user.uid,
-          name: displayName ?? "-",
-          email: user.email ?? "-",
+    const response: FirebaseReponse<User> = {
+      status: ResponseStatus.SUCCESS,
+      payload: {
+        uid: user.uid,
+        email: user.email ?? "-",
+        details: {
+          firstName: null,
+          lastName: null,
+          dateOfBirth: null,
+          height: null,
+          weight: null,
         },
-      };
+      },
+    };
 
-      return reponse;
-    })
-    .catch(error => {
-      const reponseError: FirebaseReponse<User> = {
-        status: ResponseStatus.ERROR,
-        error: {
-          code: (error.code as string) ?? FIREBASE_UNKNOWN_ERROR_CODE,
-          message: (error.message as string) ?? FIREBASE_UNKNOWN_ERROR_MESSAGE,
-        },
-      };
+    return response;
+  } catch (error: any) {
+    const responseError: FirebaseReponse<User> = {
+      status: ResponseStatus.ERROR,
+      error: {
+        code: error?.code ?? FIREBASE_UNKNOWN_ERROR_CODE,
+        message: error?.message ?? FIREBASE_UNKNOWN_ERROR_MESSAGE,
+      },
+    };
 
-      return reponseError;
-    });
+    return responseError;
+  }
 }
 
 export async function resetPasswordRequest(email: string): Promise<FirebaseReponseWithoutPayload> {
-  return sendPasswordResetEmail(auth, email)
-    .then(() => {
-      const reponse: FirebaseReponseWithoutPayload = {
-        status: ResponseStatus.SUCCESS,
-      };
+  try {
+    await sendPasswordResetEmail(auth, email);
 
-      return reponse;
-    })
-    .catch(error => {
-      const reponseError: FirebaseReponseWithoutPayload = {
-        status: ResponseStatus.ERROR,
-        error: {
-          code: (error.code as string) ?? FIREBASE_UNKNOWN_ERROR_CODE,
-          message: (error.message as string) ?? FIREBASE_UNKNOWN_ERROR_MESSAGE,
-        },
-      };
+    const response: FirebaseReponseWithoutPayload = {
+      status: ResponseStatus.SUCCESS,
+    };
 
-      return reponseError;
-    });
+    return response;
+  } catch (error: any) {
+    const responseError: FirebaseReponseWithoutPayload = {
+      status: ResponseStatus.ERROR,
+      error: {
+        code: error?.code ?? FIREBASE_UNKNOWN_ERROR_CODE,
+        message: error?.message ?? FIREBASE_UNKNOWN_ERROR_MESSAGE,
+      },
+    };
+
+    return responseError;
+  }
 }

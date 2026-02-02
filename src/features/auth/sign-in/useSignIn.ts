@@ -13,6 +13,8 @@ export default function useSignIn() {
   const { theme } = useAppTheme();
 
   const login = useAppStore(state => state.login);
+  const setUserDetails = useAppStore(state => state.setUserDetails);
+
   const [isSuccess, setIsSuccess] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -24,8 +26,9 @@ export default function useSignIn() {
       const response = await signInRequest(email, password);
 
       if (response.status === ResponseStatus.SUCCESS) {
-        saveInSecureStore(USER_KEY, response.payload);
-        login(response.payload);
+        await saveInSecureStore(USER_KEY, response.payload);
+        login(response.payload.uid, response.payload.email);
+        setUserDetails(response.payload.details);
         setIsSuccess(true);
       } else {
         Toast.show({

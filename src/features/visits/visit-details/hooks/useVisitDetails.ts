@@ -1,5 +1,5 @@
 import { useFetch } from "@/hooks/useFetch";
-import { useUserId } from "@/hooks/useUserId";
+import { useLoggedUserId } from "@/hooks/useLoggedUserId";
 import { useAppStore } from "@/store";
 import { Visit } from "@/types/Visit";
 import { useCallback, useEffect } from "react";
@@ -10,7 +10,7 @@ type useVisitDetailsProps = {
 };
 
 export const useVisitDetails = ({ visitId }: useVisitDetailsProps) => {
-  const userId = useUserId();
+  const userId = useLoggedUserId();
 
   const setDetaislOfVisit = useAppStore(state => state.setDetaislOfVisit);
   const detailsOfVisit = useAppStore(state => state.detailsOfVisit);
@@ -33,7 +33,7 @@ export const useVisitDetails = ({ visitId }: useVisitDetailsProps) => {
   });
 
   useEffect(() => {
-    fetch();
+    void fetch();
   }, [fetch]);
 
   return { visit: detailsOfVisit, isLoading, isSuccess, isError };

@@ -16,5 +16,3 @@ export type FirebaseReponseWithoutPayload =
   | (BaseFirebaseReponse & { status: ResponseStatus.ERROR; error: FirebaseError });
 
 export type FirebaseError = { code: string; message: string };
-
-export type User = { uid: string; name: string; email: string };

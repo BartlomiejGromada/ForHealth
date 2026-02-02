@@ -1,5 +1,5 @@
 import { useMutation } from "@/hooks/useMutation";
-import { useUserId } from "@/hooks/useUserId";
+import { useLoggedUserId } from "@/hooks/useLoggedUserId";
 import { useAppStore } from "@/store";
 import { router } from "expo-router";
 import { useCallback } from "react";
@@ -11,7 +11,7 @@ type useVisitDeleteProps = {
 };
 
 export const useVisitDelete = ({ visitId }: useVisitDeleteProps) => {
-  const userId = useUserId();
+  const userId = useLoggedUserId();
 
   const openInformationModal = useAppStore(state => state.openInformationModal);
   const closeInformationModal = useAppStore(state => state.closeInformationModal);

@@ -1,5 +1,5 @@
 import { useFetch } from "@/hooks/useFetch";
-import { useUserId } from "@/hooks/useUserId";
+import { useLoggedUserId } from "@/hooks/useLoggedUserId";
 import { useCallback, useEffect, useState } from "react";
 import { getExercisesCountRequest } from "../api/exercisesApi";
 import { DateRange } from "@/types/Common";
@@ -9,7 +9,7 @@ type useExercisesCountProps = {
 };
 
 export default function useExercisesCount({ range }: useExercisesCountProps) {
-  const userId = useUserId();
+  const userId = useLoggedUserId();
 
   const [count, setCount] = useState<number>(0);
 
@@ -28,7 +28,7 @@ export default function useExercisesCount({ range }: useExercisesCountProps) {
   });
 
   useEffect(() => {
-    fetch();
+    void fetch();
   }, [fetch]);
 
   return { count, isLoading, isSuccess };
