@@ -14,5 +14,9 @@
   "delete-visit-confirmation-message": "Czy na pewno chcesz usunąć tę wizytę?",
   "visit-deleted-successfully": "Wizyta została pomyślnie usunięta.",
   "deleting-visit": "Usuwanie wizyty...",
-  "deleting-visit-message": "Proszę czekać, trwa usuwanie wizyty."
+  "deleting-visit-message": "Proszę czekać, trwa usuwanie wizyty.",
+  "fab": {
+    "mark-as-completed": "Zakończona",
+    "mark-as-cancelled": "Anulowana"
+  }
 }

@@ -14,5 +14,9 @@
   "delete-visit-confirmation-message": "Are you sure you want to delete this visit?",
   "visit-deleted-successfully": "The visit has been successfully deleted.",
   "deleting-visit": "Deleting visit...",
-  "deleting-visit-message": "Please wait, the visit is being deleted."
+  "deleting-visit-message": "Please wait, the visit is being deleted.",
+  "fab": {
+    "mark-as-completed": "Completed",
+    "mark-as-cancelled": "Cancelled"
+  }
 }

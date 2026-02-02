@@ -1,14 +1,18 @@
+import {
+  FloatingActionButton,
+  FloatingActionButtonElement,
+} from "@/components/FloatingActionButton";
 import ScreenHeader from "@/components/ScreenHeader";
 import ScreenWrapper from "@/components/ScreenWrapper";
 import StandaloneScreenWrapper from "@/components/StandaloneScreenWrapper";
-import React, { Fragment } from "react";
+import { CheckCheckIcon, XCircleIcon } from "lucide-react-native";
+import React, { Fragment, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { View } from "react-native";
 import { useVisitDelete } from "./hooks/useVisitDelete";
 import { useVisitDetails } from "./hooks/useVisitDetails";
 import useVisitDetailsHeaderOptions from "./hooks/useVisitDetailsHeaderOptions";
 import { useVisitUpdate } from "./hooks/useVisitUpdate";
-import VisistOptionsCard from "./VisistOptionsCard";
 import VisitDoctorCard from "./VisitDoctorCard";
 import VisitInformationsCard from "./VisitInformationsCard";
 
@@ -37,6 +41,18 @@ export default function VisitDetails({ visitId }: VisitDetailsProps) {
     },
   });
 
+  const fabItems: FloatingActionButtonElement[] = useMemo(
+    () => [
+      { index: 1, text: t("visits.fab.mark-as-completed"), icon: CheckCheckIcon },
+      {
+        index: 2,
+        text: t("visits.fab.mark-as-cancelled"),
+        icon: XCircleIcon,
+      },
+    ],
+    [t]
+  );
+
   return (
     <Fragment>
       <ScreenHeader title={t("visits.details-of-visit")} />
@@ -56,12 +72,12 @@ export default function VisitDetails({ visitId }: VisitDetailsProps) {
                 location={visit.location}
                 comment={visit.comment}
               />
-
-              <VisistOptionsCard visitId={visitId} />
             </View>
           )}
         </StandaloneScreenWrapper>
       </ScreenWrapper>
+
+      <FloatingActionButton items={fabItems} />
     </Fragment>
   );
 }

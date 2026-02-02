@@ -1,28 +1,20 @@
 import { COLORS } from "@/constants/Colors";
 import { LucideIcon } from "lucide-react-native";
 import React from "react";
-import {
-  ColorValue,
-  PressableProps,
-  TouchableOpacity,
-  TouchableOpacityProps,
-} from "react-native";
+import { ColorValue, TouchableOpacityProps } from "react-native";
+import StyledTouchableOpacity from "./StyledTouchableOpacity";
 
 type IconPressableProps = TouchableOpacityProps & {
   Icon: LucideIcon;
   color?: ColorValue;
 };
 
-export default function IconPressable({
-  Icon,
-  color,
-  ...rest
-}: IconPressableProps) {
+export default function IconPressable({ Icon, color, ...rest }: IconPressableProps) {
   const defaultColor = COLORS.primary[500];
 
   return (
-    <TouchableOpacity activeOpacity={0.6} {...rest}>
+    <StyledTouchableOpacity {...rest}>
       <Icon color={color ?? defaultColor} />
-    </TouchableOpacity>
+    </StyledTouchableOpacity>
   );
 }
