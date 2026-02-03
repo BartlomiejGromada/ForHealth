@@ -22,8 +22,8 @@ export default function VisitDoctorCard({
   const { t } = useTranslation();
 
   return (
-    <View className="flex flex-row items-center justify-between bg-card-light dark:bg-card-dark p-4 rounded-lg">
-      <View className="flex flex-row items-center gap-4">
+    <View className="flex flex-row gap-4 items-center justify-between bg-card-light dark:bg-card-dark px-2 py-4 rounded-lg">
+      <View className="flex-1/2 flex-row items-center gap-4">
         <View className="flex items-center justify-center bg-primary-200 rounded-full p-4">
           {doctorProfession === DoctorProfession.Physiotherapist ? (
             <HandIcon color={COLORS.primary[500]} />
@@ -42,9 +42,7 @@ export default function VisitDoctorCard({
         </View>
       </View>
 
-      <View>
-        <VisitStatusBadge status={visitStatus} />
-      </View>
+      <VisitStatusBadge status={visitStatus} className="flex-1" />
     </View>
   );
 }

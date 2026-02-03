@@ -7,8 +7,8 @@
   "mark-visit-as-finished": "Mark visit as finished",
   "statuses": {
     "new": "New",
-    "canceled": "Canceled",
-    "finished": "Finished"
+    "cancelled": "Canceled",
+    "completed": "Finished"
   },
   "delete-visit-confirmation-title": "Delete visit",
   "delete-visit-confirmation-message": "Are you sure you want to delete this visit?",
@@ -17,7 +17,11 @@
   "deleting-visit-message": "Please wait, the visit is being deleted.",
   "fab": {
     "mark-as-completed": "Completed",
-    "mark-as-cancelled": "Cancelled"
+    "mark-as-cancelled": "Cancelled",
+    "hint": "Options visit",
+    "label": "Opens visit options"
   },
-  "open-details-visit": "Opens visit details"
+  "open-details-visit": "Opens visit details",
+  "visit-marked-as-cancelled": "Visit cancelled",
+  "visit-marked-as-completed": "Visit finished"
 }

@@ -12,7 +12,6 @@ type UseMutationWithPayload<T, R> = {
     funtion: (args: R) => void;
     text: string;
   };
-  onSuccessText: string;
   i18nNamespace?: string;
   onError?: (error: any) => void;
 };
@@ -63,6 +62,8 @@ export function useMutation<T, R>({
       setIsSuccess(false);
 
       try {
+        // For testing delay
+        // await new Promise(resolve => setTimeout(resolve, 3000));
         const response = await onMutation(args);
 
         if (response.status === ResponseStatus.SUCCESS) {

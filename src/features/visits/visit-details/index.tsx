@@ -5,6 +5,7 @@ import {
 import ScreenHeader from "@/components/ScreenHeader";
 import ScreenWrapper from "@/components/ScreenWrapper";
 import StandaloneScreenWrapper from "@/components/StandaloneScreenWrapper";
+import { VisitStatus } from "@/types/Visit";
 import { CheckCheckIcon, XCircleIcon } from "lucide-react-native";
 import React, { Fragment, useMemo } from "react";
 import { useTranslation } from "react-i18next";
@@ -12,6 +13,7 @@ import { View } from "react-native";
 import { useVisitDelete } from "./hooks/useVisitDelete";
 import { useVisitDetails } from "./hooks/useVisitDetails";
 import useVisitDetailsHeaderOptions from "./hooks/useVisitDetailsHeaderOptions";
+import { useMarkVisitAsCancelled, useMarkVisitAsCompleted } from "./hooks/useVisitStatusUpdate";
 import { useVisitUpdate } from "./hooks/useVisitUpdate";
 import VisitDoctorCard from "./VisitDoctorCard";
 import VisitInformationsCard from "./VisitInformationsCard";
@@ -25,15 +27,15 @@ export default function VisitDetails({ visitId }: VisitDetailsProps) {
 
   const { visit, isLoading, isError } = useVisitDetails({ visitId });
 
-  const { mutation: updateVisit, isLoading: isUpdateLoading } = useVisitUpdate({ visitId });
+  const { mutation: updateVisit, isLoading: iLoadingUpdateVisit } = useVisitUpdate({ visitId });
 
-  const { mutation: deleteVisit, isLoading: isDeleteLoading } = useVisitDelete({ visitId });
+  const { mutation: deleteVisit, isLoading: isLoadingDeleteVisit } = useVisitDelete({ visitId });
 
   useVisitDetailsHeaderOptions({
-    editVisist: { mutation: updateVisit, isLoading: isUpdateLoading },
+    editVisist: { mutation: updateVisit, isLoading: iLoadingUpdateVisit },
     deleteVisit: {
       mutation: deleteVisit,
-      isLoading: isDeleteLoading,
+      isLoading: isLoadingDeleteVisit,
       confirmation: {
         title: t("visits.delete-visit-confirmation-title"),
         message: t("visits.delete-visit-confirmation-message"),
@@ -41,16 +43,36 @@ export default function VisitDetails({ visitId }: VisitDetailsProps) {
     },
   });
 
+  const { mutation: markVisitAsCancelled, isLoading: isLoadingMarkVisitAsCancelled } =
+    useMarkVisitAsCancelled();
+
+  const { mutation: markVisitAsCompleted, isLoading: isLoadingMarkVisitAsCompleted } =
+    useMarkVisitAsCompleted();
+
   const fabItems: FloatingActionButtonElement[] = useMemo(
-    () => [
-      { index: 1, text: t("visits.fab.mark-as-completed"), icon: CheckCheckIcon },
-      {
-        index: 2,
-        text: t("visits.fab.mark-as-cancelled"),
-        icon: XCircleIcon,
-      },
-    ],
-    [t]
+    () =>
+      [
+        visit?.status !== VisitStatus.Completed
+          ? {
+              text: t("visits.fab.mark-as-completed"),
+              icon: CheckCheckIcon,
+              onPressAsync: async () => {
+                await markVisitAsCompleted(visitId);
+              },
+            }
+          : null,
+
+        visit?.status !== VisitStatus.Cancelled
+          ? {
+              text: t("visits.fab.mark-as-cancelled"),
+              icon: XCircleIcon,
+              onPressAsync: async () => {
+                await markVisitAsCancelled(visitId);
+              },
+            }
+          : null,
+      ].filter(item => item !== null),
+    [t, visitId, visit?.status, markVisitAsCancelled, markVisitAsCompleted]
   );
 
   return (
@@ -77,7 +99,14 @@ export default function VisitDetails({ visitId }: VisitDetailsProps) {
         </StandaloneScreenWrapper>
       </ScreenWrapper>
 
-      <FloatingActionButton items={fabItems} />
+      <FloatingActionButton
+        items={fabItems}
+        disabled={isLoadingMarkVisitAsCancelled || isLoadingMarkVisitAsCompleted}
+        isLoading={isLoadingMarkVisitAsCancelled || isLoadingMarkVisitAsCompleted}
+        className="absolute bottom-6 right-6 z-50 items-center"
+        accessibilityHint={t("visits.fab.hint")}
+        accessibilityLabel={t("visits.fab.label")}
+      />
     </Fragment>
   );
 }

@@ -36,5 +36,6 @@
   "actions": "Actions",
   "cancel": "Cancel",
   "logout": "Log out",
-  "logout-action": "Action log out"
+  "logout-action": "Action log out",
+  "options": "Options"
 }

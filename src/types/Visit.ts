@@ -10,8 +10,8 @@ export enum DoctorProfession {
 
 export enum VisitStatus {
   New = "new",
-  Canceled = "canceled",
-  Finished = "finished",
+  Cancelled = "cancelled",
+  Completed = "completed",
 }
 
 export type Visit = {

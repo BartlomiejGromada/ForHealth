@@ -7,8 +7,8 @@
   "mark-visit-as-finished": "Oznacz wizytę jako zakończoną",
   "statuses": {
     "new": "Nowa",
-    "canceled": "Anulowana",
-    "finished": "Zakończona"
+    "cancelled": "Anulowana",
+    "completed": "Zakończona"
   },
   "delete-visit-confirmation-title": "Usuń wizytę",
   "delete-visit-confirmation-message": "Czy na pewno chcesz usunąć tę wizytę?",
@@ -17,7 +17,11 @@
   "deleting-visit-message": "Proszę czekać, trwa usuwanie wizyty.",
   "fab": {
     "mark-as-completed": "Zakończona",
-    "mark-as-cancelled": "Anulowana"
+    "mark-as-cancelled": "Anulowana",
+    "hint": "Opcje wizyty",
+    "label": "Otwiera opcje dotyczące wizyty"
   },
-  "open-details-visit": "Otwiera szczegóły wizyty"
+  "open-details-visit": "Otwiera szczegóły wizyty",
+  "visit-marked-as-cancelled": "Wizyta anulowana",
+  "visit-marked-as-completed": "Wizyta zakończona"
 }

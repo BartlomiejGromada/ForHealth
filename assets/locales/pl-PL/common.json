@@ -37,5 +37,6 @@
   "delete": "Usuń",
   "cancel": "Anuluj",
   "logout": "Wyloguj się",
-  "logout-action": "Akcja wyloguj się"
+  "logout-action": "Akcja wyloguj się",
+  "options": "Opcje"
 }

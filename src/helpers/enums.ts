@@ -12,6 +12,6 @@ export const doctorTypeTranslationKeys: Record<DoctorProfession, string> = {
 
 export const visitStatusTranslationKeys: Record<VisitStatus, string> = {
   [VisitStatus.New]: "visits.statuses.new",
-  [VisitStatus.Canceled]: "visits.statuses.canceled",
-  [VisitStatus.Finished]: "visits.statuses.finished",
+  [VisitStatus.Cancelled]: "visits.statuses.cancelled",
+  [VisitStatus.Completed]: "visits.statuses.completed",
 };
