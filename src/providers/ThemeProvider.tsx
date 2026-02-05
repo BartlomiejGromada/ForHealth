@@ -16,7 +16,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   // const [themeApp, setThemeApp] = useState<Theme>(colorScheme ?? "light");
 
   //TODO: Usunąć MOCK
-  const [themeApp, setThemeApp] = useState<Theme>("light");
+  const [themeApp, setThemeApp] = useState<Theme>("dark");
   useEffect(() => {
     setColorScheme("light");
   }, [setColorScheme]);

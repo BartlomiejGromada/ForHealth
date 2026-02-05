@@ -1,8 +1,9 @@
-import { COLORS } from "@/constants/Colors";
+import { clsx } from "clsx";
 import { LucideIcon } from "lucide-react-native";
 import React from "react";
 import { ActivityIndicator, Pressable, TouchableOpacityProps, View } from "react-native";
 import TextStyled from "./TextStyled";
+import { IconStyled, IconStyledVaraint } from "./IconStyled";
 
 type ButtonStyledProps = TouchableOpacityProps & {
   text: string;
@@ -10,48 +11,49 @@ type ButtonStyledProps = TouchableOpacityProps & {
   type?: "primary" | "outlined";
   Icon?: {
     name: LucideIcon;
-    color: string;
+    variant?: IconStyledVaraint;
   };
 };
+
+const buttonVariants = {
+  primary: {
+    container: "bg-button-primary",
+    text: "text-button-text-primary",
+    spinner: "text-button-text-primary",
+  },
+  outlined: {
+    container: "bg-button-outlined border border-button-border",
+    text: "text-button-text-outlined",
+    spinner: "text-button-text-outlined",
+  },
+} as const;
 
 export default function ButtonStyled({
   text,
   type = "primary",
   isLoading,
   Icon,
+  disabled,
   ...rest
 }: ButtonStyledProps) {
-  const styles = {
-    primary: "bg-primary-500",
-    outlined: "border border-primary-500 bg-card-light dark:bg-card-dark",
-  };
-
-  const spinnerColor = type === "primary" ? COLORS.white : COLORS.primary[500];
+  const styles = buttonVariants[type];
 
   return (
-    <Pressable accessibilityRole="button" disabled={isLoading} {...rest}>
+    <Pressable accessibilityRole="button" disabled={disabled || isLoading} {...rest}>
       <View
-        className={`relative rounded-md flex-row justify-center items-center px-4 py-4 ${
-          styles[type]
-        } ${rest.disabled && "opacity-60"}`}>
-        <TextStyled
-          className={`${
-            type === "primary" ? "text-typography-white dark:text-black" : "text-primary-500"
-          }`}>
-          {text}
-        </TextStyled>
+        className={clsx(
+          "relative rounded-md flex-row items-center justify-center px-4 py-4",
+          styles.container,
+          (disabled || isLoading) && "opacity-60"
+        )}>
+        <TextStyled className={styles.text}>{text}</TextStyled>
 
         {(isLoading || Icon) && (
-          <View
-            style={{
-              position: "absolute",
-              right: "50%",
-              transform: [{ translateX: 40 }],
-            }}>
+          <View className="absolute right-4">
             {isLoading ? (
-              <ActivityIndicator size="small" color={spinnerColor} />
+              <ActivityIndicator />
             ) : (
-              Icon && <Icon.name color={Icon.color} size={18} />
+              Icon && <IconStyled icon={Icon.name} variant={Icon.variant ?? "default"} size={18} />
             )}
           </View>
         )}

@@ -3,20 +3,10 @@ module.exports = {
   darkMode: "class",
   content: ["src/**/*.{tsx,jsx,ts,js}", "app/**/*.{tsx,jsx,ts,js}"],
   presets: [require("nativewind/preset")],
-  safelist: [
-    {
-      pattern:
-        /(bg|text|border)-(primary|secondary|tertiary|error|success|warning|info|background|typography)-(50|100|200|300|400|500|600|700|800|900|950|light|dark|white|black)/,
-    },
-    {
-      pattern:
-        /(bg|text|border)-(primary|secondary|tertiary|error|success|warning|info|background|typography)-(50|100|200|300|400|500|600|700|800|900|950|light|dark|white|black)/,
-      variants: ["dark"],
-    },
-  ],
   theme: {
     extend: {
       colors: {
+        // === BASE PALETTES ===
         primary: {
           50: "#EDF7EE",
           100: "#DBF0DC",
@@ -56,136 +46,87 @@ module.exports = {
           900: "#1D1231",
           950: "#0D0816",
         },
-        error: {
-          light: "#ef4444",
-          dark: "#f87171",
+        // === SEMANTIC BACKGROUNDS ===
+        surface: {
+          DEFAULT: "rgb(var(--color-surface) / <alpha-value>)",
+          muted: "rgb(var(--color-surface-muted) / <alpha-value>)",
         },
-        success: {
-          0: "rgb(var(--color-success-0)/<alpha-value>)",
-          50: "rgb(var(--color-success-50)/<alpha-value>)",
-          100: "rgb(var(--color-success-100)/<alpha-value>)",
-          200: "rgb(var(--color-success-200)/<alpha-value>)",
-          300: "rgb(var(--color-success-300)/<alpha-value>)",
-          400: "rgb(var(--color-success-400)/<alpha-value>)",
-          500: "rgb(var(--color-success-500)/<alpha-value>)",
-          600: "rgb(var(--color-success-600)/<alpha-value>)",
-          700: "rgb(var(--color-success-700)/<alpha-value>)",
-          800: "rgb(var(--color-success-800)/<alpha-value>)",
-          900: "rgb(var(--color-success-900)/<alpha-value>)",
-          950: "rgb(var(--color-success-950)/<alpha-value>)",
-        },
-        warning: {
-          0: "rgb(var(--color-warning-0)/<alpha-value>)",
-          50: "rgb(var(--color-warning-50)/<alpha-value>)",
-          100: "rgb(var(--color-warning-100)/<alpha-value>)",
-          200: "rgb(var(--color-warning-200)/<alpha-value>)",
-          300: "rgb(var(--color-warning-300)/<alpha-value>)",
-          400: "rgb(var(--color-warning-400)/<alpha-value>)",
-          500: "rgb(var(--color-warning-500)/<alpha-value>)",
-          600: "rgb(var(--color-warning-600)/<alpha-value>)",
-          700: "rgb(var(--color-warning-700)/<alpha-value>)",
-          800: "rgb(var(--color-warning-800)/<alpha-value>)",
-          900: "rgb(var(--color-warning-900)/<alpha-value>)",
-          950: "rgb(var(--color-warning-950)/<alpha-value>)",
-        },
-        info: {
-          0: "rgb(var(--color-info-0)/<alpha-value>)",
-          50: "rgb(var(--color-info-50)/<alpha-value>)",
-          100: "rgb(var(--color-info-100)/<alpha-value>)",
-          200: "rgb(var(--color-info-200)/<alpha-value>)",
-          300: "rgb(var(--color-info-300)/<alpha-value>)",
-          400: "rgb(var(--color-info-400)/<alpha-value>)",
-          500: "rgb(var(--color-info-500)/<alpha-value>)",
-          600: "rgb(var(--color-info-600)/<alpha-value>)",
-          700: "rgb(var(--color-info-700)/<alpha-value>)",
-          800: "rgb(var(--color-info-800)/<alpha-value>)",
-          900: "rgb(var(--color-info-900)/<alpha-value>)",
-          950: "rgb(var(--color-info-950)/<alpha-value>)",
-        },
-        typography: {
-          50: "#fafafa",
-          100: "#f5f5f5",
-          200: "#e5e5e5",
-          300: "#d4d4d4",
-          400: "#a3a3a3",
-          500: "#737373",
-          600: "#525252",
-          700: "#404040",
-          800: "#262626",
-          900: "#171717",
-          950: "#0a0a0a",
-          white: "#FFFFFF",
-          gray: "#D4D4D4",
-          black: "#181718",
-        },
-        outline: {
-          0: "rgb(var(--color-outline-0)/<alpha-value>)",
-          50: "rgb(var(--color-outline-50)/<alpha-value>)",
-          100: "rgb(var(--color-outline-100)/<alpha-value>)",
-          200: "rgb(var(--color-outline-200)/<alpha-value>)",
-          300: "rgb(var(--color-outline-300)/<alpha-value>)",
-          400: "rgb(var(--color-outline-400)/<alpha-value>)",
-          500: "rgb(var(--color-outline-500)/<alpha-value>)",
-          600: "rgb(var(--color-outline-600)/<alpha-value>)",
-          700: "rgb(var(--color-outline-700)/<alpha-value>)",
-          800: "rgb(var(--color-outline-800)/<alpha-value>)",
-          900: "rgb(var(--color-outline-900)/<alpha-value>)",
-          950: "rgb(var(--color-outline-950)/<alpha-value>)",
-        },
-        background: {
-          0: "rgb(var(--color-background-0)/<alpha-value>)",
-          50: "rgb(var(--color-background-50)/<alpha-value>)",
-          100: "rgb(var(--color-background-100)/<alpha-value>)",
-          200: "rgb(var(--color-background-200)/<alpha-value>)",
-          300: "rgb(var(--color-background-300)/<alpha-value>)",
-          400: "rgb(var(--color-background-400)/<alpha-value>)",
-          500: "rgb(var(--color-background-500)/<alpha-value>)",
-          600: "rgb(var(--color-background-600)/<alpha-value>)",
-          700: "rgb(var(--color-background-700)/<alpha-value>)",
-          800: "rgb(var(--color-background-800)/<alpha-value>)",
-          900: "rgb(var(--color-background-900)/<alpha-value>)",
-          950: "rgb(var(--color-background-950)/<alpha-value>)",
-          error: "rgb(var(--color-background-error)/<alpha-value>)",
-          warning: "rgb(var(--color-background-warning)/<alpha-value>)",
-          muted: "rgb(var(--color-background-muted)/<alpha-value>)",
-          success: "rgb(var(--color-background-success)/<alpha-value>)",
-          info: "rgb(var(--color-background-info)/<alpha-value>)",
-          light: "#e5e7eb",
-          dark: "#121212",
-        },
+
         card: {
-          light: "#FFFFFF",
-          dark: "#1F1F1F",
+          DEFAULT: "rgb(var(--color-card) / <alpha-value>)",
         },
-        indicator: {
-          primary: "rgb(var(--color-indicator-primary)/<alpha-value>)",
-          info: "rgb(var(--color-indicator-info)/<alpha-value>)",
-          error: "rgb(var(--color-indicator-error)/<alpha-value>)",
+
+        image: {
+          backdrop: {
+            primary: "rgb(var(--color-image-backdrop-primary) / <alpha-value>)",
+            secondary: "rgb(var(--color-image-backdrop-secondary) / <alpha-value>)",
+          },
+        },
+
+        // === TEXT ===
+        text: {
+          primary: "rgb(var(--color-text-primary) / <alpha-value>)",
+          secondary: "rgb(var(--color-text-secondary) / <alpha-value>)",
+          muted: "rgb(var(--color-text-muted) / <alpha-value>)",
+          inverse: "rgb(var(--color-text-inverse) / <alpha-value>)",
+        },
+
+        // === BORDERS / OUTLINES ===
+        border: {
+          DEFAULT: "rgb(var(--color-border) / <alpha-value>)",
+          muted: "rgb(var(--color-border-muted) / <alpha-value>)",
+        },
+
+        // === STATUS COLORS ===
+        status: {
+          error: "rgb(var(--color-status-error) / <alpha-value>)",
+          success: "rgb(var(--color-status-success) / <alpha-value>)",
+          warning: "rgb(var(--color-status-warning) / <alpha-value>)",
+          info: "rgb(var(--color-status-info) / <alpha-value>)",
+        },
+
+        button: {
+          primary: "rgb(var(--color-button-primary) / <alpha-value>)",
+          outlined: "rgb(var(--color-button-outlined) / <alpha-value>)",
+        },
+        "button-text": {
+          primary: "rgb(var(--color-button-text-primary) / <alpha-value>)",
+          outlined: "rgb(var(--color-button-text-outlined) / <alpha-value>)",
+        },
+        "button-border": {
+          DEFAULT: "rgb(var(--color-button-border) / <alpha-value>)",
         },
       },
-      fontFamily: {
-        lato: ["Lato-Regular"],
-        "lato-bold": ["Lato-Bold"],
-        "lato-thin": ["Lato-Thin"],
-        "lato-light": ["Lato-Light"],
-      },
-      fontWeight: {
-        extrablack: "950",
-      },
-      fontSize: {
-        "2xs": "10px",
-      },
-      boxShadow: {
-        "hard-1": "-2px 2px 8px 0px rgba(38, 38, 38, 0.20)",
-        "hard-2": "0px 3px 10px 0px rgba(38, 38, 38, 0.20)",
-        "hard-3": "2px 2px 8px 0px rgba(38, 38, 38, 0.20)",
-        "hard-4": "0px -3px 10px 0px rgba(38, 38, 38, 0.20)",
-        "hard-5": "0px 2px 10px 0px rgba(38, 38, 38, 0.10)",
-        "soft-1": "0px 0px 10px rgba(38, 38, 38, 0.1)",
-        "soft-2": "0px 0px 20px rgba(38, 38, 38, 0.2)",
-        "soft-3": "0px 0px 30px rgba(38, 38, 38, 0.1)",
-        "soft-4": "0px 0px 40px rgba(38, 38, 38, 0.1)",
-      },
+    },
+    // === FONTS ===
+    fontFamily: {
+      body: ["Lato-Regular"],
+      heading: ["Lato-Bold"],
+      caption: ["Lato-Light"],
+    },
+    fontWeight: {
+      light: "300",
+      normal: "400",
+      medium: "500",
+      semibold: "600",
+      bold: "700",
+      extrabold: "800",
+      extrablack: "950",
+    },
+    fontSize: {
+      xs: ["0.75rem", { lineHeight: "1rem" }], // 12px
+      sm: ["0.875rem", { lineHeight: "1.25rem" }], // 14px
+      base: ["1rem", { lineHeight: "1.5rem" }], // 16px
+      lg: ["1.125rem", { lineHeight: "1.75rem" }], // 18px
+      xl: ["1.25rem", { lineHeight: "1.75rem" }], // 20px
+      "2xl": ["1.5rem", { lineHeight: "2rem" }], // 24px
+      "3xl": ["1.875rem", { lineHeight: "2.25rem" }], // 30px
+      "4xl": ["2.25rem", { lineHeight: "2.5rem" }], // 36px
+      "5xl": ["3rem", { lineHeight: "1" }], // 48px
+      "6xl": ["3.75rem", { lineHeight: "1" }], // 60px
+      "7xl": ["4.5rem", { lineHeight: "1" }], // 72px
+      "8xl": ["6rem", { lineHeight: "1" }], // 96px
+      "9xl": ["8rem", { lineHeight: "1" }], // 128px
     },
   },
 };

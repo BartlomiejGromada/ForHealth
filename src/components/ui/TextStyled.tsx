@@ -1,29 +1,17 @@
-import clsx from "clsx";
+import { clsx } from "clsx";
 import React from "react";
 import { Text, TextProps } from "react-native";
 
-export type TextType = "regular" | "bold" | "light" | "thin";
-
-type TextStyledProps = {
-  type?: TextType;
-} & TextProps;
-
-const fontMap: Record<TextType, string> = {
-  regular: "font-lato",
-  bold: "font-lato-bold",
-  light: "font-lato-light",
-  thin: "font-lato-thin",
+type TextStyledProps = TextProps & {
+  variant?: "body" | "heading" | "caption";
 };
 
-export default function TextStyled({
-  type = "regular",
-  className,
-  children,
-  ...rest
-}: TextStyledProps) {
-  return (
-    <Text className={clsx(fontMap[type], className)} {...rest}>
-      {children}
-    </Text>
-  );
+const variants = {
+  body: "font-body text-base leading-6 text-text-primary",
+  heading: "font-heading text-4xl text-lg leading-7 text-text-primary",
+  caption: "font-caption text-sm leading-5 text-text-secondary",
+};
+
+export default function TextStyled({ variant = "body", className, ...props }: TextStyledProps) {
+  return <Text {...props} className={clsx(variants[variant], className)} />;
 }

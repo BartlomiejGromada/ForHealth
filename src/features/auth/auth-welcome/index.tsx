@@ -1,5 +1,6 @@
 import ScreenAuthWrapper from "@/components/ScreenAuthWrapper";
 import ButtonStyled from "@/components/ui/ButtonStyled";
+import { IconStyled } from "@/components/ui/IconStyled";
 import TextStyled from "@/components/ui/TextStyled";
 import { COLORS } from "@/constants/Colors";
 import { useAppStore } from "@/store";
@@ -23,19 +24,15 @@ export default function AuthWelcome() {
   return (
     <ScreenAuthWrapper center={true}>
       <View className="flex-1 items-center justify-center gap-4">
-        <View className="flex items-center justify-center rounded-full bg-primary-200 h-36 w-36">
+        <View className="flex items-center justify-center rounded-full bg-image-backdrop-secondary h-36 w-36">
           <Animated.View entering={BounceIn}>
-            <HeartIcon color={COLORS.primary[500]} size={70} />
+            <IconStyled icon={HeartIcon} size={70} />
           </Animated.View>
         </View>
 
         <View className="flex items-center gap-2">
-          <TextStyled type="bold" className="dark:color-typography-white text-4xl">
-            {"ForHealth"}
-          </TextStyled>
-          <TextStyled className="color-gray-400 text-sm">
-            {t("auth.take-care-of-your-health-with-us")}
-          </TextStyled>
+          <TextStyled variant="heading">{"ForHealth"}</TextStyled>
+          <TextStyled variant="caption">{t("auth.take-care-of-your-health-with-us")}</TextStyled>
         </View>
       </View>
 

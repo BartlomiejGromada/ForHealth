@@ -114,7 +114,7 @@ export const FloatingActionButton = ({
           <Animated.View
             style={[fabStyle, { opacity: pressed ? 0.8 : 1 }]}
             className={
-              "dark:bg-red-600 h-14 rounded-full bg-primary-300 flex-row items-center justify-center overflow-hidden shadow-md shadow-black/20"
+              "bg-background-100 h-14 rounded-full bg-primary-300 flex-row items-center justify-center overflow-hidden shadow-md shadow-black/20"
             }>
             <Animated.View style={fabIconStyle}>
               {isLoading ? (
