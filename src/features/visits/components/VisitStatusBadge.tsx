@@ -1,7 +1,7 @@
 import TextStyled from "@/components/ui/TextStyled";
 import { visitStatusTranslationKeys } from "@/helpers/enums";
 import { VisitStatus } from "@/types/Visit";
-import clsx from "clsx";
+import { clsx } from "clsx";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { View, ViewProps } from "react-native";
@@ -19,9 +19,18 @@ export default function VisitStatusBadge({ status, className, ...rest }: VisitSt
     "bg-green-100": status === VisitStatus.Completed,
   };
 
+  const classNamesText = {
+    "text-blue-700": status === VisitStatus.New,
+    "text-red-700": status === VisitStatus.Cancelled,
+    "text-green-700": status === VisitStatus.Completed,
+  };
+
   return (
-    <View {...rest} className={clsx(classNamesBadge, className, "h-8 p-4 rounded-full")}>
-      <TextStyled type="bold" className="text-center text-sm truncate" numberOfLines={1}>
+    <View {...rest} className={clsx(classNamesBadge, className, "px-2 py-4 rounded-full")}>
+      <TextStyled
+        type="bold"
+        className={clsx(classNamesText, "text-center text-sm truncate")}
+        numberOfLines={1}>
         {t(visitStatusTranslationKeys[status])}
       </TextStyled>
     </View>

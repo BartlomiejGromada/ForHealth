@@ -1,4 +1,5 @@
 import { COLORS } from "@/constants/Colors";
+import { clsx } from "clsx";
 import { LucideIcon, MoreVerticalIcon } from "lucide-react-native";
 import React from "react";
 import { useTranslation } from "react-i18next";
@@ -7,6 +8,7 @@ import {
   GestureResponderEvent,
   Pressable,
   PressableProps,
+  TextProps,
   View,
 } from "react-native";
 import Animated, {
@@ -18,11 +20,19 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 import TextStyled from "./ui/TextStyled";
+import { useAppTheme } from "@/providers/ThemeProvider";
+
+export type FabItemVariant = keyof typeof fabItemStyles;
 
 export type FloatingActionButtonElement = PressableProps & {
   onPressAsync: (e: GestureResponderEvent) => Promise<void>;
-  text: string;
-  icon: LucideIcon;
+  text: TextProps & {
+    value: string;
+  };
+  icon: {
+    type: LucideIcon;
+    variant?: FabItemVariant;
+  };
 };
 
 type FloatingActionButtonProps = PressableProps & {
@@ -47,6 +57,8 @@ export const FloatingActionButton = ({
   ...rest
 }: FloatingActionButtonProps) => {
   const { t } = useTranslation();
+
+  const { theme } = useAppTheme();
 
   const fabProgress = useSharedValue(0); // 0 - closed, 1 - open
   const iconsProgress = useSharedValue(0); // item icons
@@ -101,16 +113,20 @@ export const FloatingActionButton = ({
         {({ pressed }) => (
           <Animated.View
             style={[fabStyle, { opacity: pressed ? 0.8 : 1 }]}
-            className="h-14 rounded-full bg-secondary-600 flex-row items-center justify-center overflow-hidden shadow-md shadow-black/20">
+            className={
+              "dark:bg-red-600 h-14 rounded-full bg-primary-300 flex-row items-center justify-center overflow-hidden shadow-md shadow-black/20"
+            }>
             <Animated.View style={fabIconStyle}>
               {isLoading ? (
-                <ActivityIndicator color={COLORS.secondary[100]} />
+                <ActivityIndicator color={theme === "dark" ? COLORS.white : COLORS.black} />
               ) : (
-                <MoreVerticalIcon color={COLORS.primary[100]} />
+                <MoreVerticalIcon color={theme === "dark" ? COLORS.white : COLORS.black} />
               )}
             </Animated.View>
 
-            <Animated.Text style={fabLabelStyle} className="ml-3 text-primary-100">
+            <Animated.Text
+              style={fabLabelStyle}
+              className={clsx("ml-3 font-bold text-white", text)}>
               {text ?? t("common.actions")}
             </Animated.Text>
           </Animated.View>
@@ -144,13 +160,37 @@ type FloatingActionButtonItemProps = {
   labelsProgress: SharedValue<number>;
 };
 
+const fabItemStyles = {
+  default: {
+    icon: "bg-white border border-primary-300",
+    iconColor: COLORS.primary[500],
+    label: "bg-border-50",
+    labelText: "text-typography-500",
+  },
+  danger: {
+    icon: "bg-white border border-red-300",
+    iconColor: COLORS.error.dark,
+    label: "bg-border-50",
+    labelText: "text-typography-500",
+  },
+  success: {
+    icon: "bg-white border border-green-300",
+    iconColor: COLORS.primary[500],
+    label: "bg-green-50",
+    labelText: "text-green-700",
+  },
+} as const;
+
 const FloatingActionButtonItem = ({
   index,
-  item: { text, icon: Icon, ...rest },
+  item,
   onPressAsync,
   iconsProgress,
   labelsProgress,
 }: FloatingActionButtonItemProps) => {
+  const variant = item.icon.variant ?? "default";
+  const styles = fabItemStyles[variant];
+
   const containerStyle = useAnimatedStyle(() => {
     const move = OFFSET * index;
 
@@ -180,17 +220,25 @@ const FloatingActionButtonItem = ({
 
   return (
     <Animated.View style={containerStyle}>
-      <Pressable {...rest} hitSlop={6} onPress={onPressAsync} accessibilityRole="button">
+      <Pressable onPress={onPressAsync} hitSlop={6} accessibilityRole="button">
         {({ pressed }) => (
-          <View className="flex-row items-center" style={[{ opacity: pressed ? 0.8 : 1 }]}>
+          <View className="flex-row items-center" style={{ opacity: pressed ? 0.6 : 1 }}>
             <Animated.View
               style={labelStyle}
-              className="px-3 py-2 rounded-full shadow-md shadow-black/20 bg-slate-50">
-              <TextStyled className="text-sm text-secondary-500 text-center">{text}</TextStyled>
+              className={clsx("px-3 py-2 rounded-full shadow-md shadow-black/10", styles.label)}>
+              <TextStyled
+                className={clsx("text-sm text-center", styles.labelText)}
+                numberOfLines={1}>
+                {item.text.value}
+              </TextStyled>
             </Animated.View>
 
-            <View className="w-10 h-10 rounded-full bg-secondary-500 flex items-center justify-center shadow-md shadow-black/20 border border-secondary-500">
-              <Icon color={COLORS.secondary[100]} size={18} />
+            <View
+              className={clsx(
+                "w-10 h-10 rounded-full flex items-center justify-center shadow-md shadow-black/10",
+                styles.icon
+              )}>
+              <item.icon.type size={18} color={styles.iconColor} />
             </View>
           </View>
         )}

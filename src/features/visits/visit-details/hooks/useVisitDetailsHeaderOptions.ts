@@ -5,6 +5,7 @@ import { EditIcon, Trash2 } from "lucide-react-native";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 
+// TODO: Delete this file - unused
 type useVisitDetailsHeaderOptionsProps = {
   editVisist: {
     mutation: Function;

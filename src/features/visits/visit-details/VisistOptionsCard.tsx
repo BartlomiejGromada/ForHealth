@@ -97,12 +97,12 @@ const ActionMenu = ({ visitId }: { visitId: string }) => {
       }}>
       <View className="flex gap-2">
         <ActionButton
-          text={t("visits.mark-visit-as-finished")}
+          text={t("visits.mark-visit-as-completed")}
           Icon={CheckIcon}
           action="finish"
           buttonClassName="bg-primary-100"
           isLoading={isLoading}
-          onPress={async () => await onVisitStatusChange(VisitStatus.Finished)}
+          onPress={async () => await onVisitStatusChange(VisitStatus.Completed)}
         />
 
         <ActionButton
@@ -111,7 +111,7 @@ const ActionMenu = ({ visitId }: { visitId: string }) => {
           action="cancel"
           buttonClassName="bg-primary-100"
           isLoading={isLoading}
-          onPress={async () => await onVisitStatusChange(VisitStatus.Canceled)}
+          onPress={async () => await onVisitStatusChange(VisitStatus.Cancelled)}
         />
 
         <ActionButton

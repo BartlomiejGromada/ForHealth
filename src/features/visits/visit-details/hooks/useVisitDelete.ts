@@ -1,16 +1,12 @@
-import { useMutation } from "@/hooks/useMutation";
 import { useLoggedUserId } from "@/hooks/useLoggedUserId";
 import { useAppStore } from "@/store";
 import { router } from "expo-router";
 import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { deleteVisitByIdRequest } from "../api/deleteVisitByIdRequest";
+import { useMutation } from "@/hooks/useMutation";
 
-type useVisitDeleteProps = {
-  visitId: string;
-};
-
-export const useVisitDelete = ({ visitId }: useVisitDeleteProps) => {
+export const useVisitDelete = () => {
   const userId = useLoggedUserId();
 
   const openInformationModal = useAppStore(state => state.openInformationModal);
@@ -20,25 +16,31 @@ export const useVisitDelete = ({ visitId }: useVisitDeleteProps) => {
 
   const deleteVisitFromState = useAppStore(state => state.deleteVisit);
 
-  const deleteVisit = useCallback(async () => {
-    openInformationModal({
-      title: t("visits.deleting-visit"),
-      message: t("visits.deleting-visit-message"),
-    });
+  const deleteVisit = useCallback(
+    async (visitId: string) => {
+      openInformationModal({
+        title: t("visits.deleting-visit"),
+        message: t("visits.deleting-visit-message"),
+      });
 
-    return await deleteVisitByIdRequest({
-      userId,
-      visitId,
-    });
-  }, [userId, visitId, openInformationModal, t]);
+      return await deleteVisitByIdRequest({
+        userId,
+        visitId,
+      });
+    },
+    [userId, openInformationModal, t]
+  );
 
-  const handleFetchSuccess = useCallback(() => {
-    deleteVisitFromState(visitId);
+  const handleFetchSuccess = useCallback(
+    ({ visitId }: { visitId: string }) => {
+      deleteVisitFromState(visitId);
 
-    closeInformationModal();
+      closeInformationModal();
 
-    router.back();
-  }, [deleteVisitFromState, visitId, closeInformationModal]);
+      router.back();
+    },
+    [deleteVisitFromState, closeInformationModal]
+  );
 
   const { mutation, isLoading, isSuccess } = useMutation({
     onMutation: deleteVisit,

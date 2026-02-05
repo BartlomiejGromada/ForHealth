@@ -1,6 +1,6 @@
 import { visitByIdDoc } from "@/firebase/firestore/documents";
-import { FirebaseReponseWithoutPayload, ResponseStatus } from "@/types/Firebase";
-import { deleteDoc, getDoc } from "firebase/firestore";
+import { FirebaseReponse, ResponseStatus } from "@/types/Firebase";
+import { getDoc } from "firebase/firestore";
 
 type deleteVisitByIdRequestProps = {
   userId: string;
@@ -13,7 +13,7 @@ function delay(ms: number) {
 export async function deleteVisitByIdRequest({
   userId,
   visitId,
-}: deleteVisitByIdRequestProps): Promise<FirebaseReponseWithoutPayload> {
+}: deleteVisitByIdRequestProps): Promise<FirebaseReponse<{ visitId: string }>> {
   const doc = await getDoc(visitByIdDoc(userId, visitId));
 
   if (!doc.exists()) {
@@ -32,5 +32,6 @@ export async function deleteVisitByIdRequest({
 
   return {
     status: ResponseStatus.SUCCESS,
+    payload: { visitId },
   };
 }

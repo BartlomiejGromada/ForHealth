@@ -4,7 +4,7 @@
   "additional-options": "Dodatkowe opcje",
   "cancel-visit": "Anuluj visit",
   "remove-visit": "Usuń wizytę",
-  "mark-visit-as-finished": "Oznacz wizytę jako zakończoną",
+  "mark-visit-as-completed": "Oznacz wizytę jako zakończoną",
   "statuses": {
     "new": "Nowa",
     "cancelled": "Anulowana",
@@ -16,8 +16,10 @@
   "deleting-visit": "Usuwanie wizyty...",
   "deleting-visit-message": "Proszę czekać, trwa usuwanie wizyty.",
   "fab": {
-    "mark-as-completed": "Zakończona",
-    "mark-as-cancelled": "Anulowana",
+    "edit": "Edytuj",
+    "delete": "Usuń",
+    "mark-as-completed": "Zakończ",
+    "mark-as-cancelled": "Anuluj",
     "hint": "Opcje wizyty",
     "label": "Otwiera opcje dotyczące wizyty"
   },
