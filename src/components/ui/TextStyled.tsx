@@ -9,9 +9,9 @@ type TextStyledProps = TextProps & {
 };
 
 const variants = {
-  body: "font-body text-base leading-6 text-foreground",
-  heading: "font-heading text-4xl leading-10 text-foreground",
-  caption: "font-caption text-sm leading-5 text-foreground-muted",
+  body: "font-body text-base leading-6",
+  heading: "font-heading text-4xl leading-10 ",
+  caption: "font-caption text-sm leading-5",
 };
 
 export default function TextStyled({ variant = "body", className, ...props }: TextStyledProps) {

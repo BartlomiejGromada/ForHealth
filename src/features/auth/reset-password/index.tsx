@@ -128,7 +128,7 @@ const ActionsContainer = ({
 };
 
 const validationSchema = z.object({
-  email: z.string().min(1, { message: "auth.errors.email-is-required" }).email({
-    message: "auth.errors.email-is-invalid",
+  email: z.string().min(1, { message: "auth:errors.email-is-required" }).email({
+    message: "auth:errors.email-is-invalid",
   }),
 });

@@ -29,8 +29,12 @@ export default function AuthWelcome() {
         </View>
 
         <View className="flex items-center gap-2">
-          <TextStyled variant="heading">{"ForHealth"}</TextStyled>
-          <TextStyled variant="caption">{t("auth:take-care-of-your-health-with-us")}</TextStyled>
+          <TextStyled variant="heading" className="color-foreground">
+            {"ForHealth"}
+          </TextStyled>
+          <TextStyled variant="caption" className="color-foreground-muted">
+            {t("auth:take-care-of-your-health-with-us")}
+          </TextStyled>
         </View>
       </View>
 

@@ -14,14 +14,16 @@ type ButtonStyledProps = TouchableOpacityProps & {
 
 const buttonVariants = {
   primary: {
-    container: "bg-button-primary",
+    container: "bg-button-primary h-12",
     text: "text-button-foreground-primary",
-    // spinner: "bg-button-secondary",
   },
   outlined: {
-    container: "bg-button-outlined border border-button-border-outlined",
+    container: "bg-button-outlined border border-button-border-outlined h-11",
     text: "text-button-foreground-outlined",
-    // spinner: "bg-button-outlined-secondary",
+  },
+  tertiary: {
+    container: "h-10",
+    text: "",
   },
 } as const;
 
@@ -40,7 +42,7 @@ export default function ButtonStyled({
       {({ pressed }) => (
         <View
           className={clsx(
-            `relative rounded-md flex-row items-center justify-center px-4 py-4
+            `relative rounded-md flex-row items-center justify-center p-2
             ${pressed || disabled || isLoading ? "opacity-80" : ""}`,
             styles.container
           )}>

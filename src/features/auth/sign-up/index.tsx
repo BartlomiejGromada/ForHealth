@@ -211,35 +211,35 @@ const ActionsContainer = ({
 const validationSchema = z
   .object({
     name: z.string().min(1, {
-      message: "auth.errors.firstname-and-lastname-is-required",
+      message: "auth:errors.firstname-and-lastname-is-required",
     }),
     email: z
       .string()
-      .min(1, { message: "auth.errors.email-is-required" })
-      .email({ message: "auth.errors.email-is-invalid" }),
+      .min(1, { message: "auth:errors.email-is-required" })
+      .email({ message: "auth:errors.email-is-invalid" }),
     password: z
       .string()
       .min(1, {
-        message: "auth.errors.password-is-required",
+        message: "auth:errors.password-is-required",
       })
       .min(8, {
-        message: "auth.errors.password-must-have-atleast-count-characters",
+        message: "auth:errors.password-must-have-atleast-count-characters",
       })
       .regex(/\d/, {
-        message: "auth.errors.password-must-contain-digit",
+        message: "auth:errors.password-must-contain-digit",
       }) // Przynajmniej jedna cyfra
       .regex(/[!@#$%^&*(),.?":{}|<>]/, {
-        message: "auth.errors.password-must-contain-special-character",
+        message: "auth:errors.password-must-contain-special-character",
       }), // Przynajmniej jeden znak specjalny
     confirmPassword: z.string().min(1, {
-      message: "auth.errors.confirm-password-is-required",
+      message: "auth:errors.confirm-password-is-required",
     }),
   })
   .superRefine(({ password, confirmPassword }, ctx) => {
     if (password !== confirmPassword) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
-        message: "auth.errors.confirm-password-is-not-match-to-password",
+        message: "auth:errors.confirm-password-is-not-match-to-password",
         path: ["confirmPassword"],
       });
     }

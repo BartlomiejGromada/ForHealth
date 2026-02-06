@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { KeyboardAvoidingView, Platform, TextInput, TextInputProps, View } from "react-native";
 import IconStyled, { IconName } from "./IconStyled";
 import TextStyled from "./TextStyled";
+import { clsx } from "clsx";
 
 type TextInputStyledProps = {
   icon: IconName;
@@ -16,20 +17,19 @@ export default function TextInputStyled({ icon, errors, ...rest }: TextInputStyl
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : undefined}
-      className="w-full gap-2">
+      className="w-full gap-1">
       <View
-        className={`flex-row items-center border  ${errors ? "border-error-light dark:border-error-dark" : "border-gray-300"} rounded-md px-3 py-2 bg-white w-full  dark:bg-card-dark`}>
-        <IconStyled name={icon} />
+        className={clsx(
+          "flex-row items-center rounded-md px-3 bg-input w-full h-11 border",
+          errors ? "border-destructive" : "border-border"
+        )}>
+        <IconStyled name={icon} size={18} />
 
-        <TextInput
-          {...rest}
-          className="font-lato flex-1 text-base ml-2 text-black dark:text-typography-white"
-          placeholderTextColor="#999"
-        />
+        <TextInput {...rest} className="flex-1 text-sm leading-5 ml-2 text-foreground" />
       </View>
 
       {errors && (
-        <TextStyled className="color-error-light dark:color-error-dark text-sm">
+        <TextStyled variant="caption" className="text-destructive">
           {t(errors.message!)}
         </TextStyled>
       )}
