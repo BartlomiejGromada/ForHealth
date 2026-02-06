@@ -1,5 +1,5 @@
 import TextStyled from "@/components/ui/TextStyled";
-import { COLORS } from "@/constants/Colors";
+import { THEME_TOKENS } from "@/constants/ThemeTokens";
 import { LucideIcon } from "lucide-react-native";
 import React from "react";
 import { View } from "react-native";
@@ -15,7 +15,7 @@ export default function IconText({
   icon: Icon,
   text,
   iconSize = 14,
-  iconColor = COLORS.typography[400],
+  iconColor = THEME_TOKENS.primary,
 }: IconTextProps) {
   return (
     <View className="flex flex-row items-center gap-x-1">

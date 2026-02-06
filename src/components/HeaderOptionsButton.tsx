@@ -1,4 +1,4 @@
-import { COLORS } from "@/constants/Colors";
+import { THEME_TOKENS } from "@/constants/ThemeTokens";
 import { useAppStore } from "@/store";
 import { ConfirmationModalContext } from "@/types/Common";
 import { LucideIcon, MoreVertical } from "lucide-react-native";
@@ -109,7 +109,7 @@ const MenuItemStyled = ({ option, onDismiss, isLast, isLoading }: MenuItemProps)
         className="flex-row items-center px-6 py-4">
         {Icon && (
           <View className="mr-3 w-6 items-center">
-            <Icon size={20} color={option.destructive ? "red" : COLORS.black} />
+            <Icon size={20} color={option.destructive ? "red" : THEME_TOKENS.secondary} />
           </View>
         )}
         <TextStyled

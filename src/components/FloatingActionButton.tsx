@@ -1,4 +1,5 @@
-import { COLORS } from "@/constants/Colors";
+import { THEME_TOKENS } from "@/constants/ThemeTokens";
+import { useAppTheme } from "@/providers/ThemeProvider";
 import { clsx } from "clsx";
 import { LucideIcon, MoreVerticalIcon } from "lucide-react-native";
 import React from "react";
@@ -20,7 +21,6 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 import TextStyled from "./ui/TextStyled";
-import { useAppTheme } from "@/providers/ThemeProvider";
 
 export type FabItemVariant = keyof typeof fabItemStyles;
 
@@ -118,9 +118,9 @@ export const FloatingActionButton = ({
             }>
             <Animated.View style={fabIconStyle}>
               {isLoading ? (
-                <ActivityIndicator color={theme === "dark" ? COLORS.white : COLORS.black} />
+                <ActivityIndicator color={THEME_TOKENS.secondary} />
               ) : (
-                <MoreVerticalIcon color={theme === "dark" ? COLORS.white : COLORS.black} />
+                <MoreVerticalIcon color={THEME_TOKENS.secondary} />
               )}
             </Animated.View>
 
@@ -163,19 +163,19 @@ type FloatingActionButtonItemProps = {
 const fabItemStyles = {
   default: {
     icon: "bg-white border border-primary-300",
-    iconColor: COLORS.primary[500],
+    iconColor: "todo",
     label: "bg-border-50",
     labelText: "text-typography-500",
   },
   danger: {
     icon: "bg-white border border-red-300",
-    iconColor: COLORS.error.dark,
+    iconColor: "todo",
     label: "bg-border-50",
     labelText: "text-typography-500",
   },
   success: {
     icon: "bg-white border border-green-300",
-    iconColor: COLORS.primary[500],
+    iconColor: "todo",
     label: "bg-green-50",
     labelText: "text-green-700",
   },

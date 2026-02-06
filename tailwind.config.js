@@ -3,107 +3,92 @@ module.exports = {
   darkMode: "class",
   content: ["src/**/*.{tsx,jsx,ts,js}", "app/**/*.{tsx,jsx,ts,js}"],
   presets: [require("nativewind/preset")],
+
   theme: {
     extend: {
       colors: {
-        // === BASE PALETTES ===
-        primary: {
-          50: "#EDF7EE",
-          100: "#DBF0DC",
-          200: "#B8E0B9",
-          300: "#94D196",
-          400: "#6DC070",
-          500: "#4CAF50",
-          600: "#3C8B3F",
-          700: "#2E6B30",
-          800: "#1F4720",
-          900: "#0F2410",
-          950: "#081208",
-        },
-        secondary: {
-          50: "#E6F9F7",
-          100: "#CDF4F0",
-          200: "#9BE8E0",
-          300: "#6ADDD1",
-          400: "#38D1C2",
-          500: "#26A69A",
-          600: "#1E857B",
-          700: "#17645C",
-          800: "#0F423D",
-          900: "#08211F",
-          950: "#04110F",
-        },
-        tertiary: {
-          50: "#F4F0FA",
-          100: "#EBE5F6",
-          200: "#D4C7EB",
-          300: "#C0ADE1",
-          400: "#A98FD6",
-          500: "#9575CD",
-          600: "#7044BB",
-          700: "#55348E",
-          800: "#38225E",
-          900: "#1D1231",
-          950: "#0D0816",
-        },
-        // === SEMANTIC BACKGROUNDS ===
-        surface: {
-          DEFAULT: "rgb(var(--color-surface) / <alpha-value>)",
-          muted: "rgb(var(--color-surface-muted) / <alpha-value>)",
-        },
+        /* === SURFACES === */
+        background: "var(--background)",
+        foreground: "var(--foreground)",
+        "foreground-muted": "var(--foreground-muted)",
 
         card: {
-          DEFAULT: "rgb(var(--color-card) / <alpha-value>)",
+          DEFAULT: "var(--card)",
+          foreground: "var(--card-foreground)",
         },
 
-        image: {
-          backdrop: {
-            primary: "rgb(var(--color-image-backdrop-primary) / <alpha-value>)",
-            secondary: "rgb(var(--color-image-backdrop-secondary) / <alpha-value>)",
-          },
+        popover: {
+          DEFAULT: "var(--popover)",
+          foreground: "var(--popover-foreground)",
         },
 
-        // === TEXT ===
-        text: {
-          primary: "rgb(var(--color-text-primary) / <alpha-value>)",
-          secondary: "rgb(var(--color-text-secondary) / <alpha-value>)",
-          muted: "rgb(var(--color-text-muted) / <alpha-value>)",
-          inverse: "rgb(var(--color-text-inverse) / <alpha-value>)",
+        /* === BRAND / ACCENT === */
+        primary: {
+          DEFAULT: "var(--primary)",
+          foreground: "var(--primary-foreground)",
         },
 
-        // === BORDERS / OUTLINES ===
-        border: {
-          DEFAULT: "rgb(var(--color-border) / <alpha-value>)",
-          muted: "rgb(var(--color-border-muted) / <alpha-value>)",
+        secondary: {
+          DEFAULT: "var(--secondary)",
+          foreground: "var(--secondary-foreground)",
         },
 
-        // === STATUS COLORS ===
-        status: {
-          error: "rgb(var(--color-status-error) / <alpha-value>)",
-          success: "rgb(var(--color-status-success) / <alpha-value>)",
-          warning: "rgb(var(--color-status-warning) / <alpha-value>)",
-          info: "rgb(var(--color-status-info) / <alpha-value>)",
+        muted: {
+          DEFAULT: "var(--muted)",
+          foreground: "var(--muted-foreground)",
         },
 
+        accent: {
+          DEFAULT: "var(--accent)",
+          foreground: "var(--accent-foreground)",
+        },
+
+        destructive: {
+          DEFAULT: "var(--destructive)",
+          foreground: "var(--destructive-foreground)",
+        },
+
+        /* === UI === */
+        border: "var(--border)",
+        input: "var(--input)",
+
+        /* === BUTTONS === */
         button: {
-          primary: "rgb(var(--color-button-primary) / <alpha-value>)",
-          outlined: "rgb(var(--color-button-outlined) / <alpha-value>)",
+          primary: "var(--button)",
+          secondary: "var(--button-secondary)",
+          outlined: "var(--button-outlined)",
         },
-        "button-text": {
-          primary: "rgb(var(--color-button-text-primary) / <alpha-value>)",
-          outlined: "rgb(var(--color-button-text-outlined) / <alpha-value>)",
+
+        "button-foreground": {
+          primary: "var(--button-foreground)",
+          secondary: "var(--button-secondary-foreground)",
+          outlined: "var(--button-outlined-foreground)",
         },
+
         "button-border": {
-          DEFAULT: "rgb(var(--color-button-border) / <alpha-value>)",
+          outlined: "var(--button-outlined-border)",
+        },
+
+        /* === ICONS === */
+        icon: {
+          foreground: "var(--icon)",
+          background: "var(--icon-background)",
+        },
+
+        /* === SPINNER === */
+        spinner: {
+          DEFAULT: "var(--spinner)",
         },
       },
     },
-    // === FONTS ===
+
+    /* === FONTS === */
     fontFamily: {
       body: ["Lato-Regular"],
       heading: ["Lato-Bold"],
       caption: ["Lato-Light"],
     },
+
     fontWeight: {
       light: "300",
       normal: "400",
@@ -113,20 +98,16 @@ module.exports = {
       extrabold: "800",
       extrablack: "950",
     },
+
     fontSize: {
-      xs: ["0.75rem", { lineHeight: "1rem" }], // 12px
-      sm: ["0.875rem", { lineHeight: "1.25rem" }], // 14px
-      base: ["1rem", { lineHeight: "1.5rem" }], // 16px
-      lg: ["1.125rem", { lineHeight: "1.75rem" }], // 18px
-      xl: ["1.25rem", { lineHeight: "1.75rem" }], // 20px
-      "2xl": ["1.5rem", { lineHeight: "2rem" }], // 24px
-      "3xl": ["1.875rem", { lineHeight: "2.25rem" }], // 30px
-      "4xl": ["2.25rem", { lineHeight: "2.5rem" }], // 36px
-      "5xl": ["3rem", { lineHeight: "1" }], // 48px
-      "6xl": ["3.75rem", { lineHeight: "1" }], // 60px
-      "7xl": ["4.5rem", { lineHeight: "1" }], // 72px
-      "8xl": ["6rem", { lineHeight: "1" }], // 96px
-      "9xl": ["8rem", { lineHeight: "1" }], // 128px
+      xs: [12, { lineHeight: 16 }],
+      sm: [14, { lineHeight: 20 }],
+      base: [16, { lineHeight: 24 }],
+      lg: [18, { lineHeight: 28 }],
+      xl: [20, { lineHeight: 28 }],
+      "2xl": [24, { lineHeight: 32 }],
+      "3xl": [30, { lineHeight: 36 }],
+      "4xl": [36, { lineHeight: 40 }],
     },
   },
 };

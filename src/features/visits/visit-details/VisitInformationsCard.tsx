@@ -1,5 +1,5 @@
 import TextStyled from "@/components/ui/TextStyled";
-import { COLORS } from "@/constants/Colors";
+import { COLORS } from "@/constants/ThemeTokens";
 import { CalendarIcon, MapPinIcon, NotepadTextIcon } from "lucide-react-native";
 import React from "react";
 import { useTranslation } from "react-i18next";

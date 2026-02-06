@@ -1,4 +1,4 @@
-import { COLORS } from "@/constants/Colors";
+import { THEME_TOKENS } from "@/constants/ThemeTokens";
 import { useAppTheme } from "@/providers/ThemeProvider";
 import { Stack } from "expo-router";
 import React from "react";
@@ -15,11 +15,11 @@ export default function ScreenHeader({ title }: ScreenHeaderProps) {
       options={{
         title: title,
         headerTitleStyle: {
-          color: theme === "dark" ? COLORS.white : COLORS.black,
+          color: THEME_TOKENS.primary,
         },
-        headerTintColor: theme === "dark" ? COLORS.white : COLORS.black,
+        headerTintColor: THEME_TOKENS.text.primary,
         headerStyle: {
-          backgroundColor: theme === "dark" ? COLORS.card.dark : COLORS.card.light,
+          backgroundColor: THEME_TOKENS.primary,
         },
       }}
     />

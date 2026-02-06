@@ -1,30 +1,27 @@
 import { clsx } from "clsx";
-import { LucideIcon } from "lucide-react-native";
 import React from "react";
-import { ActivityIndicator, Pressable, TouchableOpacityProps, View } from "react-native";
+import { Pressable, TouchableOpacityProps, View } from "react-native";
+import IconStyled, { IconName } from "./IconStyled";
+import StyledActivityIndicator from "./StyledActivityIndicator";
 import TextStyled from "./TextStyled";
-import { IconStyled, IconStyledVaraint } from "./IconStyled";
 
 type ButtonStyledProps = TouchableOpacityProps & {
   text: string;
   isLoading?: boolean;
   type?: "primary" | "outlined";
-  Icon?: {
-    name: LucideIcon;
-    variant?: IconStyledVaraint;
-  };
+  icon?: IconName;
 };
 
 const buttonVariants = {
   primary: {
     container: "bg-button-primary",
-    text: "text-button-text-primary",
-    spinner: "text-button-text-primary",
+    text: "text-button-foreground-primary",
+    // spinner: "bg-button-secondary",
   },
   outlined: {
-    container: "bg-button-outlined border border-button-border",
-    text: "text-button-text-outlined",
-    spinner: "text-button-text-outlined",
+    container: "bg-button-outlined border border-button-border-outlined",
+    text: "text-button-foreground-outlined",
+    // spinner: "bg-button-outlined-secondary",
   },
 } as const;
 
@@ -32,7 +29,7 @@ export default function ButtonStyled({
   text,
   type = "primary",
   isLoading,
-  Icon,
+  icon,
   disabled,
   ...rest
 }: ButtonStyledProps) {
@@ -40,24 +37,26 @@ export default function ButtonStyled({
 
   return (
     <Pressable accessibilityRole="button" disabled={disabled || isLoading} {...rest}>
-      <View
-        className={clsx(
-          "relative rounded-md flex-row items-center justify-center px-4 py-4",
-          styles.container,
-          (disabled || isLoading) && "opacity-60"
-        )}>
-        <TextStyled className={styles.text}>{text}</TextStyled>
+      {({ pressed }) => (
+        <View
+          className={clsx(
+            `relative rounded-md flex-row items-center justify-center px-4 py-4
+            ${pressed || disabled || isLoading ? "opacity-80" : ""}`,
+            styles.container
+          )}>
+          <TextStyled className={styles.text}>{text}</TextStyled>
 
-        {(isLoading || Icon) && (
-          <View className="absolute right-4">
-            {isLoading ? (
-              <ActivityIndicator />
-            ) : (
-              Icon && <IconStyled icon={Icon.name} variant={Icon.variant ?? "default"} size={18} />
-            )}
-          </View>
-        )}
-      </View>
+          {(isLoading || icon) && (
+            <View className="absolute right-4 text-button-outlined-text">
+              {isLoading ? (
+                <StyledActivityIndicator className={styles.text} />
+              ) : (
+                icon && <IconStyled name={icon} className={styles.text} />
+              )}
+            </View>
+          )}
+        </View>
+      )}
     </Pressable>
   );
 }

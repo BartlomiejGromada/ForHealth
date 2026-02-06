@@ -1,5 +1,5 @@
 import ConfirmationModal from "@/components/ConfirmationModal";
-import { COLORS } from "@/constants/Colors";
+import { THEME_TOKENS } from "@/constants/ThemeTokens";
 import { useAppTheme } from "@/providers/ThemeProvider";
 import { Tabs } from "expo-router";
 import { CalendarIcon, HouseIcon, PlusCircleIcon, UserIcon } from "lucide-react-native";
@@ -22,7 +22,7 @@ const RootTabs = () => {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: COLORS.primary[500],
+        tabBarActiveTintColor: THEME_TOKENS.primary,
         animation: "shift",
         transitionSpec: {
           animation: "spring",
@@ -32,7 +32,7 @@ const RootTabs = () => {
         },
         headerShown: false,
         tabBarStyle: {
-          backgroundColor: theme === "dark" ? COLORS.card.dark : COLORS.card.light,
+          backgroundColor: THEME_TOKENS.secondary,
         },
         tabBarLabelStyle: {
           fontFamily: "Lato-Regular",

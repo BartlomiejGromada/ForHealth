@@ -1,5 +1,5 @@
 import TextStyled from "@/components/ui/TextStyled";
-import { COLORS } from "@/constants/Colors";
+import { COLORS } from "@/constants/ThemeTokens";
 import { HeartIcon, LucideIcon, SquareActivityIcon } from "lucide-react-native";
 import React, { Fragment } from "react";
 import { useTranslation } from "react-i18next";

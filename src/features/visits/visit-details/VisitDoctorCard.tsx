@@ -1,8 +1,7 @@
+import IconStyled from "@/components/ui/IconStyled";
 import TextStyled from "@/components/ui/TextStyled";
-import { COLORS } from "@/constants/Colors";
 import { doctorTypeTranslationKeys } from "@/helpers/enums";
 import { DoctorProfession, VisitStatus } from "@/types/Visit";
-import { HandIcon, StethoscopeIcon } from "lucide-react-native";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { View } from "react-native";
@@ -26,16 +25,14 @@ export default function VisitDoctorCard({
       <View className="flex-1/2 flex-row items-center gap-4">
         <View className="flex items-center justify-center bg-primary-200 rounded-full p-4">
           {doctorProfession === DoctorProfession.Physiotherapist ? (
-            <HandIcon color={COLORS.primary[500]} />
+            <IconStyled name={"Hand"} />
           ) : (
-            <StethoscopeIcon color={COLORS.primary[500]} />
+            <IconStyled name={"Stethoscope"} />
           )}
         </View>
 
         <View>
-          <TextStyled type="bold" className="text-xl dark:text-typography-white">
-            {doctorName}
-          </TextStyled>
+          <TextStyled className="text-xl dark:text-typography-white">{doctorName}</TextStyled>
           <TextStyled className="color-typography-500">
             {t(doctorTypeTranslationKeys[doctorProfession])}
           </TextStyled>

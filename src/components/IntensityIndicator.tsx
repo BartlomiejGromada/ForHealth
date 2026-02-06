@@ -1,8 +1,7 @@
-import { COLORS } from "@/constants/Colors";
 import { IntensityEnum } from "@/types/Exercise";
-import { FlameIcon } from "lucide-react-native";
 import React from "react";
 import { View } from "react-native";
+import IconStyled from "./ui/IconStyled";
 
 type IntensityIndicatorProps = {
   intensity: IntensityEnum;
@@ -22,7 +21,7 @@ export default function IntensityIndicator({ intensity, max = 3 }: IntensityIndi
     <View className="flex flex-row">
       <View className="flex flex-row">
         {Array.from({ length: Math.min(count, max) }).map((_, index) => (
-          <FlameIcon key={index} color={COLORS.primary[500]} />
+          <IconStyled name="Flame" key={index} />
         ))}
       </View>
     </View>

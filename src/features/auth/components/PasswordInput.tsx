@@ -1,5 +1,4 @@
 import TextStyled from "@/components/ui/TextStyled";
-import { COLORS } from "@/constants/Colors";
 import { EyeIcon, EyeOffIcon, LockIcon } from "lucide-react-native";
 import React, { useState } from "react";
 import { FieldError } from "react-hook-form";
@@ -7,7 +6,6 @@ import { useTranslation } from "react-i18next";
 import {
   KeyboardAvoidingView,
   Platform,
-  Text,
   TextInput,
   TextInputProps,
   TouchableOpacity,
@@ -26,12 +24,10 @@ export default function PasswordInput({ errors, ...rest }: PasswordInputProps) {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : undefined}
-      className="w-full"
-    >
+      className="w-full">
       <View
-        className={`flex-row items-center border ${errors ? "border-error-light dark:border-error-dark" : "border-gray-300"} rounded-md px-3 py-2 bg-white w-full dark:bg-card-dark`}
-      >
-        <LockIcon color={COLORS.primary[500]} size={20} />
+        className={`flex-row items-center border ${errors ? "border-error-light dark:border-error-dark" : "border-gray-300"} rounded-md px-3 py-2 bg-white w-full dark:bg-card-dark`}>
+        {/* <LockIcon color={COLORS.primary[500]} size={20} /> */}
         <TextInput
           {...rest}
           secureTextEntry={!showPassword}

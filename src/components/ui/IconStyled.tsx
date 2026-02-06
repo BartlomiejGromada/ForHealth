@@ -1,31 +1,40 @@
-import { COLORS } from "@/constants/Colors";
-import { LucideIcon } from "lucide-react-native";
+import { icons } from "lucide-react-native";
+import { cssInterop } from "nativewind";
+import React, { useMemo } from "react";
 
-export type IconStyledVaraint = keyof typeof iconVariants;
+export type IconName = keyof typeof icons;
 
-type IconStyledProps = {
-  icon: LucideIcon;
-  variant?: IconStyledVaraint;
+type IconProps = {
+  name: IconName;
+  className?: string;
   size?: number;
 };
 
-const iconVariants = {
-  default: {
-    color: COLORS.primary[500],
-  },
-  danger: {
-    color: COLORS.error.dark,
-  },
-  success: {
-    color: COLORS.primary[500],
-  },
-  muted: {
-    color: COLORS.typography[500],
-  },
-} as const;
+const IconStyled: React.FC<IconProps> = React.memo(
+  ({ name, className = "text-icon-foreground", ...rest }) => {
+    const CustomIcon = useMemo(() => {
+      const BaseIcon = icons[name];
 
-export function IconStyled({ icon: Icon, variant = "default", size = 18 }: IconStyledProps) {
-  const styles = iconVariants[variant];
+      const WrappedIcon = cssInterop(BaseIcon, {
+        className: {
+          target: "style",
+          nativeStyleToProp: {
+            color: true,
+            width: true,
+            height: true,
+          },
+        },
+      });
 
-  return <Icon size={size} color={styles.color} />;
-}
+      WrappedIcon.displayName = `Icon(${name})`;
+
+      return WrappedIcon;
+    }, [name]);
+
+    return <CustomIcon className={className} {...rest} />;
+  }
+);
+
+IconStyled.displayName = "Icon";
+
+export default IconStyled;

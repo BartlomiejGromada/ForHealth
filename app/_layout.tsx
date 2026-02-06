@@ -1,6 +1,7 @@
 import { useAuthSession } from "@/hooks/useAuthSession";
 import { ThemeProvider } from "@/providers/ThemeProvider";
-import "@/utils/language/i18nConfig"; // This line imports the i18n configuration
+// import "@/utils/language/i18nConfig"; // This line imports the i18n configuration
+import { initializeI18n } from "@/utils/language/i18nConfig";
 import { toastConfig } from "@/utils/toast-message/toastConfig";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
@@ -23,6 +24,10 @@ export default function RootLayout() {
     "Lato-Thin": require("../assets/fonts/Lato-Thin.ttf"),
     "Lato-Light": require("../assets/fonts/Lato-Light.ttf"),
   });
+
+  useEffect(() => {
+    void initializeI18n();
+  }, []);
 
   useEffect(() => {
     if (loaded) {

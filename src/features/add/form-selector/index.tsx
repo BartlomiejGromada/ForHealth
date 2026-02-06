@@ -1,5 +1,4 @@
 import TextStyled from "@/components/ui/TextStyled";
-import { COLORS } from "@/constants/Colors";
 import { LucideIcon, SquareActivity, StethoscopeIcon } from "lucide-react-native";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -51,7 +50,7 @@ function FormSelectorCard({
       activeOpacity={0.6}
       onPress={onPress}
       className={`flex justify-center items-center w-1/2 h-24 gap-2 rounded-xl ${isSelected ? "bg-primary-500" : "bg-card-light dark:bg-card-dark"}`}>
-      <Icon color={`${isSelected ? COLORS.white : COLORS.primary[500]}`} />
+      {/* <Icon color={`${isSelected ? COLORS.white : COLORS.primary[500]}`} /> */}
       <TextStyled className={`text-sm ${isSelected ? "color-white" : "color-typography-500"}`}>
         {text}
       </TextStyled>

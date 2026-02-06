@@ -33,4 +33,4 @@ export const resources = {
     auth: authPL,
     visits: visitsPL,
   },
-};
+} as const;

@@ -1,11 +1,9 @@
 import ScreenAuthWrapper from "@/components/ScreenAuthWrapper";
 import ButtonStyled from "@/components/ui/ButtonStyled";
-import { IconStyled } from "@/components/ui/IconStyled";
+import IconStyled from "@/components/ui/IconStyled";
 import TextStyled from "@/components/ui/TextStyled";
-import { COLORS } from "@/constants/Colors";
 import { useAppStore } from "@/store";
 import { Redirect, useRouter } from "expo-router";
-import { HeartIcon } from "lucide-react-native";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { View } from "react-native";
@@ -24,23 +22,28 @@ export default function AuthWelcome() {
   return (
     <ScreenAuthWrapper center={true}>
       <View className="flex-1 items-center justify-center gap-4">
-        <View className="flex items-center justify-center rounded-full bg-image-backdrop-secondary h-36 w-36">
+        <View className="flex items-center justify-center rounded-full bg-icon-background h-36 w-36">
           <Animated.View entering={BounceIn}>
-            <IconStyled icon={HeartIcon} size={70} />
+            <IconStyled name="Heart" size={70} />
           </Animated.View>
         </View>
 
         <View className="flex items-center gap-2">
           <TextStyled variant="heading">{"ForHealth"}</TextStyled>
-          <TextStyled variant="caption">{t("auth.take-care-of-your-health-with-us")}</TextStyled>
+          <TextStyled variant="caption">{t("auth:take-care-of-your-health-with-us")}</TextStyled>
         </View>
       </View>
 
       <View className="w-full gap-4 justify-end pb-10">
-        <ButtonStyled text={t("auth.login")} onPress={() => navigate("/(app)/sign-in")} />
         <ButtonStyled
-          text={t("auth.registration")}
+          text={t("auth:login")}
+          icon={"LogIn"}
+          onPress={() => navigate("/(app)/sign-in")}
+        />
+        <ButtonStyled
+          text={t("auth:registration")}
           onPress={() => navigate("/(app)/sign-up")}
+          icon="UserPlus"
           type="outlined"
         />
       </View>
