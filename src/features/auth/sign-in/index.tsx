@@ -1,7 +1,6 @@
 import ScreenAuthWrapper from "@/components/ScreenAuthWrapper";
 import ButtonStyled from "@/components/ui/ButtonStyled";
 import TextInputStyled from "@/components/ui/TextInputStyled";
-import TextPressable from "@/components/ui/TextPressable";
 import TextStyled from "@/components/ui/TextStyled";
 import PasswordInput from "@/features/auth/components/PasswordInput";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -73,10 +72,12 @@ const FormContainer = ({
   return (
     <View className="gap-4">
       <View className="gap-2">
-        <TextStyled variant="heading" className="text-xl">
+        <TextStyled variant="heading" className="text-xl text-foreground">
           {t("auth:login")}
         </TextStyled>
-        <TextStyled variant="caption">{`${t("auth:welcome-back")}! ${t("auth:log-in-to-your-account")}`}</TextStyled>
+        <TextStyled
+          variant="caption"
+          className="text-foreground">{`${t("auth:welcome-back")}! ${t("auth:log-in-to-your-account")}.`}</TextStyled>
       </View>
 
       <View className="gap-2 w-full">
@@ -134,13 +135,13 @@ const ActionsContainer = ({
 
   return (
     <View className="gap-2">
-      <TextPressable
+      <ButtonStyled
         text={t("auth:forgot-password")}
-        classNameText={"text-right"}
+        type="tertiary"
+        disabled={isLoading}
         onPress={() => {
           navigate("/(app)/reset-password");
         }}
-        disabled={isLoading}
       />
 
       <ButtonStyled
@@ -149,17 +150,17 @@ const ActionsContainer = ({
         isLoading={isLoading}
         onPress={onSubmit}
         className="pt-4"
+        icon="LogIn"
       />
 
-      <View className="flex flex-row justify-center gap-2 pt-4">
-        <TextStyled className="text-typography-400">
-          {t("auth:dont-have-an-account-yet")}
-        </TextStyled>
-        <TextPressable
+      <View className="flex flex-row justify-center items-center gap-2 pt-4">
+        <TextStyled className="text-foreground">{t("auth:dont-have-an-account-yet")}</TextStyled>
+
+        <ButtonStyled
           text={t("auth:sign-up")}
-          type={"bold"}
-          onPress={() => navigate("/(app)/sign-up")}
+          type="tertiary"
           disabled={isLoading}
+          onPress={() => navigate("/(app)/sign-up")}
         />
       </View>
     </View>

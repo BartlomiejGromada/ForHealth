@@ -27,7 +27,10 @@
   --accent-foreground: rgba(31, 31, 35, 1);
 
   --destructive: rgba(239, 68, 68, 1);
-  --destructive-foreground: rgba(255, 255, 255, 1);
+  --destructive-foreground: rgba(31, 31, 35, 1);
+
+  --success: rgba(76, 175, 80, 1);
+  --success-foreground: rgba(255, 255, 255, 1);
 
   --border: rgba(229, 229, 234, 1);
   --input: rgba(229, 229, 234, 1);
@@ -80,24 +83,27 @@
   --destructive: rgba(248, 113, 113, 1);
   --destructive-foreground: rgba(255, 255, 255, 1);
 
+  --success: rgba(148, 209, 150, 1);
+  --success-foreground: rgba(255, 255, 255, 1);
+
   --border: rgba(255, 255, 255, 0.1);
   --input: rgba(255, 255, 255, 0.15);
 
   /* === BUTTONS === */
-  --button: rgba(76, 175, 80, 1);
+  --button: rgba(148, 209, 150, 1);
   --button-secondary: rgba(31, 31, 35, 1);
   --button-outlined: rgba(31, 31, 35, 1);
 
   --button-foreground: rgba(31, 31, 35, 1);
   --button-secondary-foreground: rgba(31, 31, 35, 1);
-  --button-outlined-foreground: rgba(76, 175, 80, 1);
+  --button-outlined-foreground: rgba(148, 209, 150, 1);
 
-  --button-outlined-border: rgba(76, 175, 80, 1);
+  --button-outlined-border: rgba(148, 209, 150, 1);
 
   /* === ICONS === */
-  --icon: rgba(109, 192, 112, 1);
-  --icon-background: rgba(148, 209, 150, 1);
+  --icon: rgba(148, 209, 150, 1);
+  --icon-background: rgba(123, 241, 168, 1);
 
   /* === SPINNER === */
-  --spinner: rgba(76, 175, 80, 1);
+  --spinner: rgba(148, 209, 150, 1);
 }

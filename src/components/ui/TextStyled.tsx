@@ -10,7 +10,7 @@ type TextStyledProps = TextProps & {
 
 const variants = {
   body: "font-body text-base leading-6",
-  heading: "font-heading text-4xl leading-10 ",
+  heading: "font-heading text-4xl leading-10",
   caption: "font-caption text-sm leading-5",
 };
 

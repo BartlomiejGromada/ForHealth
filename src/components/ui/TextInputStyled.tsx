@@ -1,18 +1,25 @@
+import { clsx } from "clsx";
 import React from "react";
 import { FieldError } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { KeyboardAvoidingView, Platform, TextInput, TextInputProps, View } from "react-native";
 import IconStyled, { IconName } from "./IconStyled";
 import TextStyled from "./TextStyled";
-import { clsx } from "clsx";
 
-type TextInputStyledProps = {
+type TextInputStyledProps = TextInputProps & {
   icon: IconName;
   errors?: FieldError;
-} & TextInputProps;
+};
 
-export default function TextInputStyled({ icon, errors, ...rest }: TextInputStyledProps) {
+export default function TextInputStyled({
+  icon,
+  errors,
+  editable = true,
+  ...rest
+}: TextInputStyledProps) {
   const { t } = useTranslation();
+
+  const isDisabled = editable === false;
 
   return (
     <KeyboardAvoidingView
@@ -20,16 +27,23 @@ export default function TextInputStyled({ icon, errors, ...rest }: TextInputStyl
       className="w-full gap-1">
       <View
         className={clsx(
-          "flex-row items-center rounded-md px-3 bg-input w-full h-11 border",
-          errors ? "border-destructive" : "border-border"
+          "flex-row items-center h-14 w-full rounded-md border bg-input px-3",
+          errors ? "border-destructive" : "border-border",
+          isDisabled && "opacity-50"
         )}>
-        <IconStyled name={icon} size={18} />
+        <IconStyled name={icon} size={20} className="text-foreground-muted" />
 
-        <TextInput {...rest} className="flex-1 text-sm leading-5 ml-2 text-foreground" />
+        <TextInput
+          {...rest}
+          editable={editable}
+          autoCorrect={false}
+          textAlignVertical="center"
+          className="flex-1 ml-2 text-foreground placeholder:text-foreground"
+        />
       </View>
 
       {errors && (
-        <TextStyled variant="caption" className="text-destructive">
+        <TextStyled variant="caption" className="pl-4 text-xs text-destructive">
           {t(errors.message!)}
         </TextStyled>
       )}

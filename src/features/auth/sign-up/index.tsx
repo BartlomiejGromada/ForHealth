@@ -1,11 +1,9 @@
 import ScreenAuthWrapper from "@/components/ScreenAuthWrapper";
 import ButtonStyled from "@/components/ui/ButtonStyled";
 import TextInputStyled from "@/components/ui/TextInputStyled";
-import TextPressable from "@/components/ui/TextPressable";
 import TextStyled from "@/components/ui/TextStyled";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "expo-router";
-import { MailIcon, UserIcon } from "lucide-react-native";
 import React, { useEffect } from "react";
 import { Control, Controller, FieldErrors, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
@@ -77,18 +75,16 @@ const FormContainer = ({
   return (
     <View className="gap-4">
       <View className="gap-2">
-        <TextStyled type="bold" className="text-3xl dark:color-typography-white">
-          {t("auth.registration")}
+        <TextStyled variant="heading" className="text-xl text-foreground">
+          {t("auth:registration")}
         </TextStyled>
-        <TextStyled className="text-sm color-typography-500">
-          {`${t("auth.create-new-account-and-take-care-of-your-health")}`}
+        <TextStyled variant="caption" className="text-foreground-muted">
+          {`${t("auth:create-new-account-and-take-care-of-your-health")}.`}
         </TextStyled>
       </View>
 
       <View className="gap-2 w-full">
-        <TextStyled type="bold" className=" dark:color-typography-white">
-          {t("auth.firstname-and-lastname")}
-        </TextStyled>
+        <TextStyled className="text-foreground">{t("auth:firstname-and-lastname")}</TextStyled>
         <Controller
           control={control}
           name="name"
@@ -99,8 +95,8 @@ const FormContainer = ({
               value={value}
               errors={errors.name}
               autoCapitalize="words"
-              placeholder={t("auth.firstname-and-lastname")}
-              Icon={UserIcon}
+              placeholder={t("auth:firstname-and-lastname")}
+              icon="User"
               editable={!isLoading}
             />
           )}
@@ -108,9 +104,7 @@ const FormContainer = ({
       </View>
 
       <View className="gap-2 w-full">
-        <TextStyled type="bold" className=" dark:color-typography-white">
-          {t("auth.email")}
-        </TextStyled>
+        <TextStyled className="text-foreground">{t("auth:email")}</TextStyled>
         <Controller
           control={control}
           name="email"
@@ -122,8 +116,8 @@ const FormContainer = ({
               errors={errors.email}
               keyboardType="email-address"
               autoCapitalize="none"
-              placeholder={t("auth.email")}
-              Icon={MailIcon}
+              placeholder={t("auth:email")}
+              icon="Mail"
               editable={!isLoading}
             />
           )}
@@ -131,9 +125,7 @@ const FormContainer = ({
       </View>
 
       <View className="gap-2 w-full">
-        <TextStyled type="bold" className="dark:color-typography-white">
-          {t("auth.password")}
-        </TextStyled>
+        <TextStyled className="text-foreground">{t("auth:password")}</TextStyled>
         <Controller
           control={control}
           name="password"
@@ -144,7 +136,7 @@ const FormContainer = ({
               value={value}
               errors={errors.password}
               autoCapitalize="none"
-              placeholder={t("auth.password")}
+              placeholder={t("auth:password")}
               editable={!isLoading}
             />
           )}
@@ -152,9 +144,7 @@ const FormContainer = ({
       </View>
 
       <View className="gap-2 w-full">
-        <TextStyled type="bold" className="dark:color-typography-white">
-          {t("auth.confirm-password")}
-        </TextStyled>
+        <TextStyled className="text-foreground">{t("auth:confirm-password")}</TextStyled>
         <Controller
           control={control}
           name="confirmPassword"
@@ -165,7 +155,7 @@ const FormContainer = ({
               value={value}
               errors={errors.confirmPassword}
               autoCapitalize="none"
-              placeholder={t("auth.confirm-password")}
+              placeholder={t("auth:confirm-password")}
               editable={!isLoading}
             />
           )}
@@ -188,20 +178,21 @@ const ActionsContainer = ({
   return (
     <View>
       <ButtonStyled
-        text={t("auth.sign-up")}
+        text={t("auth:sign-up")}
         disabled={isLoading}
         onPress={onSubmit}
         isLoading={isLoading}
         className="pt-12"
       />
 
-      <View className="flex flex-row justify-center gap-2 pt-6">
-        <TextStyled className="text-typography-400">{t("auth.already-have-an-account")}</TextStyled>
-        <TextPressable
-          text={t("auth.log-in")}
-          type="bold"
-          onPress={() => navigate("/(app)/sign-in")}
+      <View className="flex flex-row items-center justify-center gap-2 pt-6">
+        <TextStyled className="text-foreground">{t("auth:already-have-an-account")}</TextStyled>
+
+        <ButtonStyled
+          text={t("auth:log-in")}
+          type="tertiary"
           disabled={isLoading}
+          onPress={() => navigate("/(app)/sign-in")}
         />
       </View>
     </View>

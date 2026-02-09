@@ -1,71 +1,42 @@
 import IconStyled from "@/components/ui/IconStyled";
-import { THEME_TOKENS } from "@/constants/ThemeTokens";
+import TextStyled from "@/components/ui/TextStyled";
 import { View } from "react-native";
-import { BaseToast, ErrorToast, ToastConfigParams } from "react-native-toast-message";
+import { ToastConfigParams } from "react-native-toast-message";
 
-type StyledToastProps = ToastConfigParams<{ theme: "light" | "dark" }>;
+type StyledToastProps = ToastConfigParams<{
+  text1: string;
+  text2?: string;
+}>;
 
 export const toastConfig = {
-  success: (props: StyledToastProps) => (
-    <BaseToast
-      {...props}
-      style={{
-        backgroundColor: THEME_TOKENS.card.primary,
-        borderLeftColor: THEME_TOKENS.card.border,
-      }}
-      renderLeadingIcon={() => (
-        <View className="flex items-center justify-center p-2">
-          <IconStyled
-            name={"CircleCheck"}
-            // fill={
-            //   props.props.theme === "dark" ? THEME_TOKENS.card.border : THEME_TOKENS.card.border
-            // }
-          />
-        </View>
-      )}
-      text2NumberOfLines={3}
-      contentContainerStyle={{ paddingHorizontal: 15 }}
-      text1Style={{
-        fontSize: 15,
-        fontWeight: "600",
-        color: THEME_TOKENS.primary,
-      }}
-      text2Style={{
-        fontSize: 12,
-        fontWeight: "400",
-        color: THEME_TOKENS.primary,
-      }}
-    />
+  success: ({ text1, text2 }: StyledToastProps) => (
+    <View className="flex-row items-center bg-card border-l-4 border-success px-4 py-3">
+      <IconStyled name="CircleCheck" size={20} className="text-success " />
+
+      <View className="ml-3 flex-1">
+        <TextStyled className="text-foreground">{text1}</TextStyled>
+        {text2 && (
+          <TextStyled variant="caption" className="mt-1 text-sm text-foreground-muted">
+            {text2}
+          </TextStyled>
+        )}
+      </View>
+    </View>
   ),
-  error: (props: StyledToastProps) => (
-    <ErrorToast
-      {...props}
-      style={{
-        backgroundColor: THEME_TOKENS.primary,
-        borderLeftColor: THEME_TOKENS.primary,
-      }}
-      renderLeadingIcon={() => (
-        <View className="flex items-center justify-center p-2">
-          <IconStyled
-            name={"CircleCheck"}
-            // fill={
-            //   props.props.theme === "dark" ? THEME_TOKENS.card.border : THEME_TOKENS.card.border
-            // }
-          />
-        </View>
-      )}
-      text2NumberOfLines={3}
-      contentContainerStyle={{ paddingHorizontal: 15 }}
-      text1Style={{
-        fontSize: 15,
-        fontWeight: "600",
-        color: THEME_TOKENS.primary,
-      }}
-      text2Style={{
-        fontSize: 12,
-        fontWeight: "400",
-        color: THEME_TOKENS.primary,
-      }}
-    />
+
+  error: ({ text1, text2 }: StyledToastProps) => (
+    <View className="flex-row items-center bg-card border-l-4 border-destructive px-4 py-3">
+      <IconStyled name="CircleX" size={20} className="text-destructive" />
+
+      <View className="ml-3 flex-1">
+        <TextStyled className="text-destructive">{text1}</TextStyled>
+
+        {text2 && (
+          <TextStyled variant="caption" className="mt-1 text-sm text-destructive-foreground">
+            {text2}
+          </TextStyled>
+        )}
+      </View>
+    </View>
   ),
 };

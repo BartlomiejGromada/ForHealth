@@ -1,17 +1,15 @@
 import ScreenAuthWrapper from "@/components/ScreenAuthWrapper";
+import ButtonStyled from "@/components/ui/ButtonStyled";
 import TextInputStyled from "@/components/ui/TextInputStyled";
 import TextStyled from "@/components/ui/TextStyled";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "expo-router";
-import { MailIcon } from "lucide-react-native";
 import React from "react";
 import { Control, Controller, FieldErrors, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { ScrollView, View } from "react-native";
-import useResetPassword from "./useResetPassword";
-import TextPressable from "@/components/ui/TextPressable";
-import ButtonStyled from "@/components/ui/ButtonStyled";
 import { z } from "zod";
+import useResetPassword from "./useResetPassword";
 
 type ResetPasswordType = {
   email: string;
@@ -65,15 +63,17 @@ const FormContainer = ({
   return (
     <View className="gap-4">
       <View className="gap-2">
-        <TextStyled type="bold" className="text-3xl dark:color-typography-white">
-          {t("auth.reset-password")}
+        <TextStyled variant="heading" className="text-xl text-foreground">
+          {t("auth:reset-password")}
+        </TextStyled>
+
+        <TextStyled variant="caption" className="text-sm text-foreground-muted">
+          {`${t("auth:reset-password-description")}.`}
         </TextStyled>
       </View>
 
       <View className="gap-2 w-full">
-        <TextStyled type="bold" className=" dark:color-typography-white">
-          {t("auth.email")}
-        </TextStyled>
+        <TextStyled className="text-foreground">{t("auth:email")}</TextStyled>
         <Controller
           control={control}
           name="email"
@@ -85,8 +85,8 @@ const FormContainer = ({
               errors={errors.email}
               keyboardType="email-address"
               autoCapitalize="none"
-              placeholder={t("auth.email")}
-              Icon={MailIcon}
+              placeholder={t("auth:email")}
+              icon={"Mail"}
               editable={!isLoading}
             />
           )}
@@ -109,18 +109,20 @@ const ActionsContainer = ({
   return (
     <View className="gap-2">
       <View className="flex items-end">
-        <TextPressable
-          text={t("auth.log-in")}
-          onPress={() => navigate("/(app)/sign-in")}
+        <ButtonStyled
+          text={t("auth:log-in")}
+          type="tertiary"
           disabled={isLoading}
+          onPress={() => navigate("/(app)/sign-in")}
         />
       </View>
 
       <ButtonStyled
-        text={t("auth.reset-password")}
+        text={t("auth:reset-password")}
         disabled={isLoading}
         isLoading={isLoading}
         onPress={onSubmit}
+        icon="Lock"
         className="pt-4"
       />
     </View>
