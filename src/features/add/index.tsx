@@ -8,7 +8,7 @@ export default function Add() {
   const { t } = useTranslation();
 
   return (
-    <ScreenWrapper title={t("add.add-entry")}>
+    <ScreenWrapper title={t("add:add-entry")}>
       <FormSelector />
       <Form />
     </ScreenWrapper>
