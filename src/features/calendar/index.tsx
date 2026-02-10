@@ -9,7 +9,7 @@ export default function Calendar() {
   const { t } = useTranslation();
 
   return (
-    <ScreenWrapper title={t("calendar.calendar")}>
+    <ScreenWrapper title={t("calendar:calendar")}>
       <View className="flex gap-y-4">
         <CalendarWrapper />
         <TodayEvents />

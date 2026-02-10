@@ -18,13 +18,13 @@ export default function ScreenWrapper({
   };
 }) {
   return (
-    <SafeAreaView className="flex-1 dark:bg-background-dark h-full">
+    <SafeAreaView className="flex-1 bg-background h-full">
       <StatusBar style="auto" />
 
       <ScrollView className="px-6">
         <View className={`flex flex-row justify-between ${title ? "pt-10" : ""} items-center pb-4`}>
           {title && (
-            <TextStyled variant="heading" className="text-2xl text-left text-foreground">
+            <TextStyled variant="heading" className="text-xl text-left text-foreground">
               {title}
             </TextStyled>
           )}

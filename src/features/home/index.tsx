@@ -3,7 +3,6 @@ import { useLoggedUser } from "@/hooks/useLoggedUser";
 import { useAppStore } from "@/store";
 import { removeFromSecureStore } from "@/utils/secure-store";
 import { Redirect } from "expo-router";
-import { LogOutIcon } from "lucide-react-native";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import Dashboard from "./dashboard";
@@ -23,9 +22,9 @@ export default function Home() {
 
   return (
     <ScreenWrapper
-      title={`${t("home.welcome")}, ${firstName}!`}
-      Icon={{
-        name: LogOutIcon,
+      title={`${t("home:welcome")}, ${firstName}!`}
+      icon={{
+        name: "LogOut",
         tooltip: t("common.logout"),
         onPress: async () => {
           await removeFromSecureStore("user");

@@ -32,7 +32,7 @@ export default function VisitDoctorCard({
         </View>
 
         <View>
-          <TextStyled className="text-xl dark:text-typography-white">{doctorName}</TextStyled>
+          <TextStyled className="text-lg dark:text-typography-white">{doctorName}</TextStyled>
           <TextStyled className="color-typography-500">
             {t(doctorTypeTranslationKeys[doctorProfession])}
           </TextStyled>

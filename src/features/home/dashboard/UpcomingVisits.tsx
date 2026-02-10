@@ -21,16 +21,16 @@ export default function UpcomingVisits() {
 
   return (
     <ContainerSection
-      title={t("home.upcoming-visits")}
+      title={t("home:upcoming-visits")}
       onPressAction={() => {
         router.navigate("/standalone/visits-list");
       }}>
       <View className="flex gap-y-4">
         {isLoading ? (
-          <ActivityIndicator size={"large"} className="color-primary-300" />
+          <ActivityIndicator size={"large"} />
         ) : visits.length === 0 ? (
-          <TextStyled className="text-center color-typography-500">
-            {t("home.no-upcoming-visits")}
+          <TextStyled className="text-center text-foreground">
+            {t("home:no-upcoming-visits")}
           </TextStyled>
         ) : (
           visits.map(visit => (
@@ -52,7 +52,7 @@ export default function UpcomingVisits() {
                   },
                 })
               }
-              accessibilityHint={t("visits.open-details-visit")}
+              accessibilityHint={t("visits:open-details-visit")}
               accessibilityLabel={`${visit.doctor}, ${visit.date.toLocaleDateString()}`}
             />
           ))

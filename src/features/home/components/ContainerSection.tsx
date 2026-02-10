@@ -1,4 +1,4 @@
-import TextPressable from "@/components/ui/TextPressable";
+import ButtonStyled from "@/components/ui/ButtonStyled";
 import TextStyled from "@/components/ui/TextStyled";
 import React from "react";
 import { useTranslation } from "react-i18next";
@@ -18,11 +18,15 @@ export default function ContainerSection({
   return (
     <View className="w-100 gap-y-4">
       <View className="flex flex-row justify-between items-center">
-        <TextStyled type="bold" className="text-lg dark:text-typography-white">
+        <TextStyled variant="heading" className="text-sm text-foreground">
           {title}
         </TextStyled>
-
-        <TextPressable text={t("home.see-all")} onPress={onPressAction} />
+        <ButtonStyled
+          type="tertiary"
+          text={t("home:see-all")}
+          textClassName="text-foreground-muted"
+          onPress={onPressAction}
+        />
       </View>
 
       {children}

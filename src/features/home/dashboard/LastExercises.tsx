@@ -29,16 +29,16 @@ export default function LastExercises() {
 
   return (
     <ContainerSection
-      title={t("home.last-exercises")}
+      title={t("home:last-exercises")}
       onPressAction={() => {
         router.navigate("/standalone/exercises-list");
       }}>
       <View className="w-full flex gap-y-4">
         {isLoading ? (
-          <ActivityIndicator size={"large"} className="color-primary-300" />
+          <ActivityIndicator size={"large"} />
         ) : exercises.length === 0 ? (
-          <TextStyled className="text-center color-typography-500">
-            {t("home.no-exercises-yet")}
+          <TextStyled className="text-center text-foreground">
+            {t("home:no-exercises-yet")}
           </TextStyled>
         ) : (
           exercises.map(exercise => (
@@ -62,7 +62,7 @@ export default function LastExercises() {
                   },
                 })
               }
-              accessibilityHint={t("exercises.open-details-exercise")}
+              accessibilityHint={t("exercises:open-details-exercise")}
               accessibilityLabel={`${exercise.name}, ${exercise.date.toLocaleDateString()}`}
             />
           ))

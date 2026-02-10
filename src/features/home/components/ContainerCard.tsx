@@ -31,13 +31,11 @@ export function ContainerCard({
         <View
           className="w-full flex flex-row items-center rounded-lg gap-x-4 bg-card-light p-4 dark:bg-card-dark"
           style={{ opacity: pressed ? 0.6 : 1 }}>
-          <View className="flex items-center justify-center bg-primary-200 rounded-full p-4">
-            {/* <Icon color={COLORS.primary[500]} /> */}
-          </View>
+          <View className="flex items-center justify-center bg-primary-200 rounded-full p-4"></View>
 
           <View className="w-full">
-            <TextStyled className="text-md dark:text-typography-white">{title}</TextStyled>
-            <TextStyled className="text-sm color-typography-500">{subtitle}</TextStyled>
+            <TextStyled className="text-md">{title}</TextStyled>
+            <TextStyled className="text-sm">{subtitle}</TextStyled>
             {description}
           </View>
         </View>

@@ -27,13 +27,13 @@ export default function Summary() {
         <SummarySquare
           icon={"Heart"}
           count={upcomingVisitsCount}
-          text={t("home.upcoming-visits")}
+          text={t("home:upcoming-visits")}
           isLoading={isLoadingUpcomingVisitsCount}
         />
         <SummarySquare
           icon={"SquareActivity"}
           count={exercisesCount}
-          text={t("home.training-this-week")}
+          text={t("home:training-this-week")}
           isLoading={isLoadingExercisesCount}
         />
       </View>
@@ -50,14 +50,16 @@ type SummarySquareProps = {
 
 function SummarySquare({ icon, count, text, isLoading }: SummarySquareProps) {
   return (
-    <View className="flex items-center gap-y-1 bg-card-light dark:bg-card-dark rounded-lg p-4 w-1/2 h-28">
+    <View className="flex items-center justify-center gap-y-1 bg-card rounded-lg p-4 w-1/2 h-32 shadow-sm">
       {isLoading ? (
-        <ActivityIndicator size={"large"} className="color-primary-300" />
+        <ActivityIndicator size={"large"} className="color-spinner" />
       ) : (
         <Fragment>
           <IconStyled name={icon} />
-          <TextStyled className="text-2xl dark:text-typography-white">{count}</TextStyled>
-          <TextStyled className="text-xs color-typography-500">{text}</TextStyled>
+          <TextStyled className="text-xl font-bold text-card-foreground">{count}</TextStyled>
+          <TextStyled variant="caption" className="text-sm text-card-foreground text-center">
+            {text}
+          </TextStyled>
         </Fragment>
       )}
     </View>

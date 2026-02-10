@@ -1,24 +1,44 @@
-import { ViewStyle } from "react-native";
+import { useAppTheme } from "@/providers/ThemeProvider";
 import { Tabs } from "expo-router";
 import { cssInterop } from "nativewind";
+import React, { ComponentProps } from "react";
+import { ViewStyle } from "react-native";
 
-function StyledTabsImpl({
-  tabBarStyle,
-  headerStyle,
-  ...props
-}: React.ComponentProps<typeof Tabs> & {
-  tabBarStyle?: ViewStyle;
-  headerStyle?: ViewStyle;
-}) {
-  props.screenOptions = {
-    ...props.screenOptions,
-    tabBarStyle,
-    headerStyle,
-  };
-  return <Tabs {...props} />;
-}
+type StyledTabsProps = Omit<
+  ComponentProps<typeof Tabs> & {
+    headerStyle?: ViewStyle;
+    tabBarStyle?: ViewStyle;
+    tabBarLabelStyle?: ViewStyle;
+  },
+  "screenOptions"
+>;
 
-export const StyledTabs = cssInterop(StyledTabsImpl, {
-  tabBarClassName: "tabBarStyle",
-  headerClassName: "headerStyle",
-});
+export const StyledTabs = cssInterop(
+  ({ headerStyle, tabBarStyle, ...props }: StyledTabsProps) => {
+    const { theme } = useAppTheme();
+
+    return (
+      <Tabs
+        screenOptions={{
+          animation: "shift",
+          headerShown: false,
+          transitionSpec: {
+            animation: "spring",
+            config: {
+              speed: 50,
+            },
+          },
+          tabBarActiveTintColor: theme === "dark" ? "white" : "black",
+          headerStyle,
+          tabBarStyle,
+        }}
+        {...props}
+      />
+    );
+  },
+  {
+    headerClassName: "headerStyle",
+    tabBarClassName: "tabBarStyle",
+    tabBarLabelClassName: "tabBarLabelStyle",
+  }
+);

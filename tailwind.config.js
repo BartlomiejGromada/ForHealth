@@ -105,14 +105,14 @@ module.exports = {
     },
 
     fontSize: {
-      xs: [12, { lineHeight: 16 }],
-      sm: [14, { lineHeight: 20 }],
-      base: [16, { lineHeight: 24 }],
-      lg: [18, { lineHeight: 28 }],
-      xl: [20, { lineHeight: 28 }],
-      "2xl": [24, { lineHeight: 32 }],
-      "3xl": [30, { lineHeight: 36 }],
-      "4xl": [36, { lineHeight: 40 }],
+      xs: [12, { lineHeight: 16 }], // caption, hinty
+      sm: [14, { lineHeight: 18 }], // pomocniczy tekst
+      base: [16, { lineHeight: 20 }], // BODY (najważniejsze)
+      lg: [18, { lineHeight: 22 }], // section title
+      xl: [20, { lineHeight: 24 }], // screen title
+      "2xl": [22, { lineHeight: 26 }], // hero / duże liczby
+      "3xl": [26, { lineHeight: 30 }], // rzadko (np. statystyki)
+      "4xl": [30, { lineHeight: 34 }], // bardzo rzadko
     },
   },
 };

@@ -10,6 +10,7 @@ type ButtonStyledProps = TouchableOpacityProps & {
   isLoading?: boolean;
   type?: "primary" | "outlined" | "tertiary";
   icon?: IconName;
+  textClassName?: string;
 };
 
 const buttonVariants = {
@@ -27,8 +28,8 @@ const buttonVariants = {
   },
 
   tertiary: {
-    container: "bg-transparent h-10 px-3 flex-row items-center justify-center",
-    text: "text-foreground text-sm font-medium underline",
+    container: "bg-transparent h-10 flex-row items-center justify-center",
+    text: "text-foreground text-xs font-medium",
     iconSize: 18,
   },
 } as const;
@@ -36,6 +37,7 @@ const buttonVariants = {
 export default function ButtonStyled({
   text,
   type = "primary",
+  textClassName,
   isLoading,
   icon,
   disabled,
@@ -66,7 +68,7 @@ export default function ButtonStyled({
             </View>
           )}
 
-          <TextStyled className={clsx(styles.text, `${pressed && "opacity-80"}`)}>
+          <TextStyled className={clsx(styles.text, textClassName, `${pressed && "opacity-80"}`)}>
             {text}
           </TextStyled>
         </View>
