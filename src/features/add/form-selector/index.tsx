@@ -1,8 +1,8 @@
+import IconStyled, { IconName } from "@/components/ui/IconStyled";
 import TextStyled from "@/components/ui/TextStyled";
-import { LucideIcon, SquareActivity, StethoscopeIcon } from "lucide-react-native";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { TouchableOpacity, View } from "react-native";
+import { Pressable, View } from "react-native";
 import { FORM_TYPE } from "../types/formType";
 
 export default function FormSelector() {
@@ -18,14 +18,14 @@ export default function FormSelector() {
     <View className="gap-4">
       <View className="flex flex-row gap-2">
         <FormSelectorCard
-          Icon={StethoscopeIcon}
-          text={t("add.visit")}
+          icon={"Stethoscope"}
+          text={t("add:visit")}
           isSelected={selectedForm === FORM_TYPE.VISIT}
           onPress={() => onPressHandle(FORM_TYPE.VISIT)}
         />
         <FormSelectorCard
-          Icon={SquareActivity}
-          text={t("add.exercise")}
+          icon={"SquareActivity"}
+          text={t("add:exercise")}
           isSelected={selectedForm === FORM_TYPE.EXERCISE}
           onPress={() => onPressHandle(FORM_TYPE.EXERCISE)}
         />
@@ -35,25 +35,33 @@ export default function FormSelector() {
 }
 
 function FormSelectorCard({
-  Icon,
+  icon,
   text,
   isSelected,
   onPress,
 }: {
-  Icon: LucideIcon;
+  icon: IconName;
   text: string;
   isSelected: boolean;
   onPress: () => void;
 }) {
   return (
-    <TouchableOpacity
-      activeOpacity={0.6}
-      onPress={onPress}
-      className={`flex justify-center items-center w-1/2 h-24 gap-2 rounded-xl ${isSelected ? "bg-primary-500" : "bg-card-light dark:bg-card-dark"}`}>
-      {/* <Icon color={`${isSelected ? COLORS.white : COLORS.primary[500]}`} /> */}
-      <TextStyled className={`text-sm ${isSelected ? "color-white" : "color-typography-500"}`}>
-        {text}
-      </TextStyled>
-    </TouchableOpacity>
+    <Pressable onPress={onPress} className="flex-1">
+      {({ pressed }) => (
+        <View
+          className={`flex justify-center items-center w-full h-24 gap-2 rounded-md border ${isSelected ? "border-2 bg-card border-button-primary" : "bg-card border-border"}`}
+          style={{ opacity: pressed ? 0.8 : 1 }}>
+          <IconStyled
+            name={icon}
+            className={isSelected ? "text-foreground" : "text-card-foreground"}
+          />
+
+          <TextStyled
+            className={`${isSelected ? "text-foreground" : "font-normal text-card-foreground"}`}>
+            {text}
+          </TextStyled>
+        </View>
+      )}
+    </Pressable>
   );
 }

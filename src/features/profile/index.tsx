@@ -8,9 +8,9 @@ export default function Profile() {
   const { t } = useTranslation();
 
   return (
-    <ScreenWrapper title={t("profile.profile")}>
+    <ScreenWrapper title={t("profile:profile")}>
       <ProfileInfo />
-      <ButtonStyled text={t("profile.edit-profile")} onPress={() => {}} />
+      <ButtonStyled text={t("profile:edit-profile")} onPress={() => {}} />
     </ScreenWrapper>
   );
 }

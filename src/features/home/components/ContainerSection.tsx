@@ -18,7 +18,7 @@ export default function ContainerSection({
   return (
     <View className="w-100 gap-y-4">
       <View className="flex flex-row justify-between items-center">
-        <TextStyled variant="heading" className="text-sm text-foreground">
+        <TextStyled variant="heading" className="text-lg text-foreground">
           {title}
         </TextStyled>
         <ButtonStyled
