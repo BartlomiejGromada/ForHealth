@@ -1,5 +1,5 @@
 import TextStyled from "@/components/ui/TextStyled";
-import clsx from "clsx";
+import { clsx } from "clsx";
 import { LucideIcon } from "lucide-react-native";
 import React from "react";
 import { ActivityIndicator, TouchableOpacity, TouchableOpacityProps, View } from "react-native";

@@ -21,7 +21,7 @@ export default function IntensityIndicator({ intensity, max = 3 }: IntensityIndi
     <View className="flex flex-row">
       <View className="flex flex-row">
         {Array.from({ length: Math.min(count, max) }).map((_, index) => (
-          <IconStyled name="Flame" key={index} />
+          <IconStyled name="Flame" key={index} className="color-foreground-muted" size={18} />
         ))}
       </View>
     </View>

@@ -21,9 +21,9 @@ export default function VisitDoctorCard({
   const { t } = useTranslation();
 
   return (
-    <View className="flex flex-row gap-4 items-center justify-between bg-card-light dark:bg-card-dark px-2 py-4 rounded-lg">
+    <View className="flex flex-row gap-4 items-center justify-between p-2 bg-card rounded-lg">
       <View className="flex-1/2 flex-row items-center gap-4">
-        <View className="flex items-center justify-center bg-primary-200 rounded-full p-4">
+        <View className="flex items-center justify-center rounded-full p-2">
           {doctorProfession === DoctorProfession.Physiotherapist ? (
             <IconStyled name={"Hand"} />
           ) : (
@@ -32,8 +32,8 @@ export default function VisitDoctorCard({
         </View>
 
         <View>
-          <TextStyled className="text-lg dark:text-typography-white">{doctorName}</TextStyled>
-          <TextStyled className="color-typography-500">
+          <TextStyled className="color-foreground">{doctorName}</TextStyled>
+          <TextStyled className="color-foreground-muted">
             {t(doctorTypeTranslationKeys[doctorProfession])}
           </TextStyled>
         </View>

@@ -1,6 +1,5 @@
+import IconStyled from "@/components/ui/IconStyled";
 import TextStyled from "@/components/ui/TextStyled";
-import { COLORS } from "@/constants/ThemeTokens";
-import { CalendarIcon, MapPinIcon, NotepadTextIcon } from "lucide-react-native";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { View } from "react-native";
@@ -19,24 +18,24 @@ export default function VisitInformationsCard({
   const { t } = useTranslation();
 
   return (
-    <View className="flex justify-center bg-card-light dark:bg-card-dark p-4 rounded-lg gap-4">
+    <View className="flex justify-center bg-card p-4 rounded-lg gap-4">
       <TextStyled
-        type="bold"
-        className="text-xl dark:text-typography-white">{`${t("visits.information-about-visit")}:`}</TextStyled>
+        variant="heading"
+        className="text-lg color-foreground">{`${t("visits:information-about-visit")}:`}</TextStyled>
 
-      <View className="flex flex-row items-center gap-2">
-        <CalendarIcon color={COLORS.primary[500]} />
-        <TextStyled className="color-typography-500">{formatDate(date)}</TextStyled>
+      <View className="flex flex-row items-center gap-4">
+        <IconStyled name="Calendar" />
+        <TextStyled className="text-sm color-foreground w-3/4">{formatDate(date)}</TextStyled>
       </View>
 
-      <View className="flex flex-row items-center gap-2">
-        <MapPinIcon color={COLORS.primary[500]} />
-        <TextStyled className="color-typography-500">{location}</TextStyled>
+      <View className="flex flex-row items-center gap-4">
+        <IconStyled name="MapPin" />
+        <TextStyled className="text-sm  color-foreground">{location}</TextStyled>
       </View>
 
-      <View className="flex flex-row items-center gap-2">
-        <NotepadTextIcon color={COLORS.primary[500]} />
-        <TextStyled className="color-typography-500">{comment ?? "-"}</TextStyled>
+      <View className="flex flex-row items-center gap-4">
+        <IconStyled name="NotepadText" />
+        <TextStyled className="text-sm color-foreground">{comment ?? "-"}</TextStyled>
       </View>
     </View>
   );

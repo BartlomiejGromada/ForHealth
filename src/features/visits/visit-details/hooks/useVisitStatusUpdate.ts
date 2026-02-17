@@ -11,7 +11,7 @@ export const useMarkVisitAsCancelled = () => {
 
   const { mutation, isLoading, isSuccess } = useVisitStatusUpdate({
     newVisitStatus: VisitStatus.Cancelled,
-    onSuccessText: t("visits.visit-marked-as-cancelled"),
+    onSuccessText: t("visits:visit-marked-as-cancelled"),
   });
 
   return { mutation, isLoading, isSuccess };
@@ -22,7 +22,7 @@ export const useMarkVisitAsCompleted = () => {
 
   const { mutation, isLoading, isSuccess } = useVisitStatusUpdate({
     newVisitStatus: VisitStatus.Completed,
-    onSuccessText: t("visits.visit-marked-as-completed"),
+    onSuccessText: t("visits:visit-marked-as-completed"),
   });
 
   return { mutation, isLoading, isSuccess };

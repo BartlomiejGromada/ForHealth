@@ -1,11 +1,10 @@
-import { useAppTheme } from "@/providers/ThemeProvider";
-import { RefreshCcwIcon } from "lucide-react-native";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { ActivityIndicator, View } from "react-native";
+import { View } from "react-native";
 import ButtonStyled from "./ui/ButtonStyled";
-import TextStyled from "./ui/TextStyled";
 import IconStyled from "./ui/IconStyled";
+import StyledActivityIndicator from "./ui/StyledActivityIndicator";
+import TextStyled from "./ui/TextStyled";
 
 type StandaloneScreenWrapperProps = {
   isLoading: boolean;
@@ -19,7 +18,7 @@ export default function StandaloneScreenWrapper({
   children,
 }: StandaloneScreenWrapperProps) {
   return isLoading ? (
-    <ActivityIndicator size={"large"} className="color-primary-500" />
+    <StyledActivityIndicator size={"large"} className="color-spinner" />
   ) : isError ? (
     <ErrorContainer />
   ) : (
@@ -29,7 +28,7 @@ export default function StandaloneScreenWrapper({
 
 const ErrorContainer = () => {
   return (
-    <View className="p-4 rounded-md gap-4 h-[88vh] bg-card-light dark:bg-card-dark">
+    <View className="p-4 rounded-md gap-4 ">
       <ErrorTitle />
 
       <ErrorAdvise />
@@ -46,11 +45,11 @@ const ErrorTitle = () => {
     <View className="flex items-center gap-2 p-2">
       <IconStyled name="CircleX" />
 
-      <TextStyled className="text-2xl font-bold dark:color-typography-white">
-        {t("common.errors.something-went-wrong")}
+      <TextStyled className="text-2xl font-bold color-foreground">
+        {t("common:errors.something-went-wrong")}
       </TextStyled>
-      <TextStyled className="text-center text-lg color-typography-500">
-        {t("common.errors.something-went-wrong-description")}
+      <TextStyled variant="caption" className="text-center text-lg color-foreground-muted">
+        {t("common:errors.something-went-wrong-description")}
       </TextStyled>
     </View>
   );
@@ -60,30 +59,28 @@ const ErrorAdvise = () => {
   const { t } = useTranslation();
 
   return (
-    <View className="flex gap-2 p-4 rounded-lg bg-card-light dark:bg-card-dark border border-primary-500">
-      <TextStyled className="text-lg dark:text-typography-white">
-        {t("common.what-can-you-do")}
-      </TextStyled>
+    <View className="flex gap-2 p-4 rounded-lg border bg-background border-border">
+      <TextStyled className="text-lg color-foreground">{t("common:what-can-you-do")}</TextStyled>
 
-      <TextStyled className="color-typography-500">{`• ${t("common.check-your-internet-connection")}`}</TextStyled>
-      <TextStyled className="color-typography-500">{`• ${t("common.refresh-page")}`}</TextStyled>
-      <TextStyled className="color-typography-500">{`• ${t("common.try-again-later")}`}</TextStyled>
+      <TextStyled
+        variant="caption"
+        className="color-foreground-muted">{`• ${t("common:check-your-internet-connection")}`}</TextStyled>
+      <TextStyled
+        variant="caption"
+        className="color-foreground-muted">{`• ${t("common:refresh-page")}`}</TextStyled>
+      <TextStyled
+        variant="caption"
+        className="color-foreground-muted">{`• ${t("common:try-again-later")}`}</TextStyled>
     </View>
   );
 };
 
 const ErrorActions = () => {
   const { t } = useTranslation();
-  const { theme } = useAppTheme();
 
   return (
     <View className="pt-6">
-      <ButtonStyled
-        text={t("common.try-again")}
-        Icon={{
-          name: RefreshCcwIcon,
-        }}
-      />
+      <ButtonStyled text={t("common:try-again")} icon="RefreshCcw" />
     </View>
   );
 };

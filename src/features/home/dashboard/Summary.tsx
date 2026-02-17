@@ -25,13 +25,13 @@ export default function Summary() {
     <View className="gap-y-4">
       <View className="flex flex-row justify-between gap-x-2">
         <SummarySquare
-          icon={"Heart"}
+          icon={{ name: "Heart", className: "color-destructive" }}
           count={upcomingVisitsCount}
           text={t("home:upcoming-visits")}
           isLoading={isLoadingUpcomingVisitsCount}
         />
         <SummarySquare
-          icon={"SquareActivity"}
+          icon={{ name: "Gauge", className: "color-foreground" }}
           count={exercisesCount}
           text={t("home:training-this-week")}
           isLoading={isLoadingExercisesCount}
@@ -42,7 +42,7 @@ export default function Summary() {
 }
 
 type SummarySquareProps = {
-  icon: IconName;
+  icon: { name: IconName; className?: string };
   count: number;
   text: string;
   isLoading: boolean;
@@ -55,7 +55,7 @@ function SummarySquare({ icon, count, text, isLoading }: SummarySquareProps) {
         <ActivityIndicator size={"large"} className="color-spinner" />
       ) : (
         <Fragment>
-          <IconStyled name={icon} />
+          <IconStyled name={icon.name} className={icon.className} />
           <TextStyled className="text-xl font-bold text-card-foreground">{count}</TextStyled>
           <TextStyled variant="caption" className="text-sm text-card-foreground text-center">
             {text}

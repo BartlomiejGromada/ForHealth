@@ -36,11 +36,11 @@ export default function VisistOptionsCard({ visitId }: VisistOptionsCardProps) {
   return (
     <View className="flex bg-card-light dark:bg-card-dark p-4 rounded-lg gap-4">
       <TextStyled
-        type="bold"
+        variant="heading"
         className="text-xl dark:color-typography-white">{`${t("visits.additional-options")}:`}</TextStyled>
 
       <ActionButton
-        text={t("common.edit")}
+        text={t("common:edit")}
         Icon={EditIcon}
         action="basic"
         onPress={() => {
@@ -84,7 +84,7 @@ const ActionMenu = ({ visitId }: { visitId: string }) => {
       style={{ width: 340 }}
       anchor={
         <ActionButton
-          text={t("common.actions")}
+          text={t("common:actions")}
           action="basic"
           Icon={isMenuVisible ? ArrowUpIcon : ArrowDownIcon}
           onPress={() => setIsMenuVisible(true)}
@@ -97,7 +97,7 @@ const ActionMenu = ({ visitId }: { visitId: string }) => {
       }}>
       <View className="flex gap-2">
         <ActionButton
-          text={t("visits.mark-visit-as-completed")}
+          text={t("visits:mark-visit-as-completed")}
           Icon={CheckIcon}
           action="finish"
           buttonClassName="bg-primary-100"
@@ -106,7 +106,7 @@ const ActionMenu = ({ visitId }: { visitId: string }) => {
         />
 
         <ActionButton
-          text={t("visits.cancel-visit")}
+          text={t("visits:cancel-visit")}
           Icon={XIcon}
           action="cancel"
           buttonClassName="bg-primary-100"
@@ -115,7 +115,7 @@ const ActionMenu = ({ visitId }: { visitId: string }) => {
         />
 
         <ActionButton
-          text={t("visits.remove-visit")}
+          text={t("visits:remove-visit")}
           Icon={TrashIcon}
           action="remove"
           buttonClassName="bg-primary-100"

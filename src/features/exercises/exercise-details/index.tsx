@@ -18,7 +18,7 @@ export default function ExerciseDetails({ exerciseId }: ExerciseDetailsProps) {
 
   return (
     <Fragment>
-      <ScreenHeader title={t("exercises.details-of-exercise")} />
+      <ScreenHeader title={t("exercises:details-of-exercise")} />
 
       <ScreenWrapper>
         <StandaloneScreenWrapper isLoading={false} isError={false}>

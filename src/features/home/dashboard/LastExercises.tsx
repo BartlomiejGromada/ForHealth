@@ -2,7 +2,6 @@ import IntensityIndicator from "@/components/IntensityIndicator";
 import TextStyled from "@/components/ui/TextStyled";
 import { endOfWeek, startOfWeek } from "date-fns";
 import { router } from "expo-router";
-import { SquareActivityIcon, TimerIcon } from "lucide-react-native";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { View } from "react-native";
@@ -44,12 +43,12 @@ export default function LastExercises() {
           exercises.map(exercise => (
             <ContainerCard
               key={exercise.id}
-              Icon={SquareActivityIcon}
+              icon={"Dumbbell"}
               title={exercise.name}
               subtitle={exercise.date.toLocaleDateString()}
               description={
                 <View className="w-[80%] flex flex-row justify-between">
-                  <IconText text={`${exercise.durationInMin} min`} icon={TimerIcon} />
+                  <IconText text={`${exercise.durationInMin} min`} icon={"Timer"} />
 
                   <IntensityIndicator intensity={exercise.intensity} />
                 </View>

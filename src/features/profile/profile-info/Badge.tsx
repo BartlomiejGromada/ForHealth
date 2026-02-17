@@ -15,10 +15,12 @@ export default function Badge() {
         <IconStyled name="User" size={64} />
       </View>
       <View className="flex items-center justify-center">
-        <TextStyled variant="heading" className="text-xl">
+        <TextStyled variant="heading" className="text-xl text-foreground">
           {fullName ?? ""}
         </TextStyled>
-        <TextStyled variant="caption">{user!.email}</TextStyled>
+        <TextStyled variant="caption" className="text-foreground-muted">
+          {user!.email}
+        </TextStyled>
       </View>
     </View>
   );

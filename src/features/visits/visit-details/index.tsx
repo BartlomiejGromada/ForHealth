@@ -6,7 +6,6 @@ import ScreenHeader from "@/components/ScreenHeader";
 import ScreenWrapper from "@/components/ScreenWrapper";
 import StandaloneScreenWrapper from "@/components/StandaloneScreenWrapper";
 import { VisitStatus } from "@/types/Visit";
-import { CheckCheckIcon, EditIcon, Trash2Icon, XIcon } from "lucide-react-native";
 import React, { Fragment, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { View } from "react-native";
@@ -56,9 +55,9 @@ export default function VisitDetails({ visitId }: VisitDetailsProps) {
     () =>
       [
         {
-          text: { value: t("visits.fab.delete") },
+          text: { value: t("visits:fab.delete") },
           icon: {
-            type: Trash2Icon,
+            name: "Trash2",
             variant: "danger",
           },
           onPressAsync: async () => {
@@ -67,9 +66,9 @@ export default function VisitDetails({ visitId }: VisitDetailsProps) {
         } as FloatingActionButtonElement,
 
         {
-          text: { value: t("visits.fab.edit") },
+          text: { value: t("visits:fab.edit") },
           icon: {
-            type: EditIcon,
+            name: "Pencil",
           },
           onPressAsync: async () => {
             // await updateVisit(visitId);
@@ -79,10 +78,9 @@ export default function VisitDetails({ visitId }: VisitDetailsProps) {
         visit?.status !== VisitStatus.Completed
           ? ({
               text: {
-                value: t("visits.fab.mark-as-completed"),
-                backgroundClass: "bg-primary-500 ",
+                value: t("visits:fab.mark-as-completed"),
               },
-              icon: { type: CheckCheckIcon },
+              icon: { name: "CheckCheck" },
               onPressAsync: async () => {
                 await markVisitAsCompleted(visitId);
               },
@@ -92,10 +90,10 @@ export default function VisitDetails({ visitId }: VisitDetailsProps) {
         visit?.status !== VisitStatus.Cancelled
           ? ({
               text: {
-                value: t("visits.fab.mark-as-cancelled"),
+                value: t("visits:fab.mark-as-cancelled"),
                 backgroundClass: "bg-primary-500 ",
               },
-              icon: { type: XIcon },
+              icon: { name: "X" },
               onPressAsync: async () => {
                 await markVisitAsCancelled(visitId);
               },
@@ -110,7 +108,7 @@ export default function VisitDetails({ visitId }: VisitDetailsProps) {
 
   return (
     <Fragment>
-      <ScreenHeader title={t("visits.details-of-visit")} />
+      <ScreenHeader title={t("visits:details-of-visit")} />
 
       <ScreenWrapper>
         <StandaloneScreenWrapper isLoading={isVisitDetailsLoading} isError={isVisitDetailsError}>
@@ -137,8 +135,8 @@ export default function VisitDetails({ visitId }: VisitDetailsProps) {
         disabled={isLoadingMutation}
         isLoading={isLoadingMutation}
         className="absolute bottom-6 right-6 z-50 items-center"
-        accessibilityHint={t("visits.fab.hint")}
-        accessibilityLabel={t("visits.fab.label")}
+        accessibilityHint={t("visits:fab.hint")}
+        accessibilityLabel={t("visits:fab.label")}
       />
     </Fragment>
   );

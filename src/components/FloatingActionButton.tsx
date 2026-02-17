@@ -1,17 +1,7 @@
-import { THEME_TOKENS } from "@/constants/ThemeTokens";
-import { useAppTheme } from "@/providers/ThemeProvider";
 import { clsx } from "clsx";
-import { LucideIcon, MoreVerticalIcon } from "lucide-react-native";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import {
-  ActivityIndicator,
-  GestureResponderEvent,
-  Pressable,
-  PressableProps,
-  TextProps,
-  View,
-} from "react-native";
+import { GestureResponderEvent, Pressable, PressableProps, TextProps, View } from "react-native";
 import Animated, {
   interpolate,
   SharedValue,
@@ -20,6 +10,8 @@ import Animated, {
   withDelay,
   withTiming,
 } from "react-native-reanimated";
+import IconStyled, { IconName } from "./ui/IconStyled";
+import StyledActivityIndicator from "./ui/StyledActivityIndicator";
 import TextStyled from "./ui/TextStyled";
 
 export type FabItemVariant = keyof typeof fabItemStyles;
@@ -30,7 +22,7 @@ export type FloatingActionButtonElement = PressableProps & {
     value: string;
   };
   icon: {
-    type: LucideIcon;
+    name: IconName;
     variant?: FabItemVariant;
   };
 };
@@ -57,8 +49,6 @@ export const FloatingActionButton = ({
   ...rest
 }: FloatingActionButtonProps) => {
   const { t } = useTranslation();
-
-  const { theme } = useAppTheme();
 
   const fabProgress = useSharedValue(0); // 0 - closed, 1 - open
   const iconsProgress = useSharedValue(0); // item icons
@@ -114,20 +104,20 @@ export const FloatingActionButton = ({
           <Animated.View
             style={[fabStyle, { opacity: pressed ? 0.8 : 1 }]}
             className={
-              "bg-background-100 h-14 rounded-full bg-primary-300 flex-row items-center justify-center overflow-hidden shadow-md shadow-black/20"
+              "flex-row items-center justify-center h-14 rounded-full bg-button-primary overflow-hidden shadow-md shadow-black/20"
             }>
             <Animated.View style={fabIconStyle}>
               {isLoading ? (
-                <ActivityIndicator color={THEME_TOKENS.secondary} />
+                <StyledActivityIndicator className="color-secondary" />
               ) : (
-                <MoreVerticalIcon color={THEME_TOKENS.secondary} />
+                <IconStyled name="EllipsisVertical" className="color-secondary" />
               )}
             </Animated.View>
 
             <Animated.Text
               style={fabLabelStyle}
-              className={clsx("ml-3 font-bold text-white", text)}>
-              {text ?? t("common.actions")}
+              className={clsx("ml-3 font-bold text-secondary", text)}>
+              {text ?? t("common:actions")}
             </Animated.Text>
           </Animated.View>
         )}
@@ -162,22 +152,22 @@ type FloatingActionButtonItemProps = {
 
 const fabItemStyles = {
   default: {
-    icon: "bg-white border border-primary-300",
-    iconColor: "todo",
-    label: "bg-border-50",
-    labelText: "text-typography-500",
+    icon: "bg-background border border-border",
+    iconColor: "color-primary",
+    label: "border border-border",
+    labelText: "text-foreground-muted",
   },
   danger: {
-    icon: "bg-white border border-red-300",
-    iconColor: "todo",
-    label: "bg-border-50",
-    labelText: "text-typography-500",
+    icon: "border border-destructive",
+    iconColor: "color-destructive",
+    label: "border border-destructive",
+    labelText: "text-destructive",
   },
   success: {
-    icon: "bg-white border border-green-300",
-    iconColor: "todo",
-    label: "bg-green-50",
-    labelText: "text-green-700",
+    icon: "border border-success",
+    iconColor: "color-success",
+    label: "border border-success",
+    labelText: "text-success",
   },
 } as const;
 
@@ -225,7 +215,7 @@ const FloatingActionButtonItem = ({
           <View className="flex-row items-center" style={{ opacity: pressed ? 0.6 : 1 }}>
             <Animated.View
               style={labelStyle}
-              className={clsx("px-3 py-2 rounded-full shadow-md shadow-black/10", styles.label)}>
+              className={clsx("px-3 rounded-full shadow-md shadow-black/10", styles.label)}>
               <TextStyled
                 className={clsx("text-sm text-center", styles.labelText)}
                 numberOfLines={1}>
@@ -238,7 +228,7 @@ const FloatingActionButtonItem = ({
                 "w-10 h-10 rounded-full flex items-center justify-center shadow-md shadow-black/10",
                 styles.icon
               )}>
-              <item.icon.type size={18} color={styles.iconColor} />
+              <IconStyled name={item.icon.name} size={18} className={styles.iconColor} />
             </View>
           </View>
         )}

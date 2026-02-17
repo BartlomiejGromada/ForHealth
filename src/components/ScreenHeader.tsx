@@ -1,5 +1,4 @@
 import { THEME_TOKENS } from "@/constants/ThemeTokens";
-import { useAppTheme } from "@/providers/ThemeProvider";
 import { Stack } from "expo-router";
 import React from "react";
 
@@ -8,8 +7,6 @@ type ScreenHeaderProps = {
 };
 
 export default function ScreenHeader({ title }: ScreenHeaderProps) {
-  const { theme } = useAppTheme();
-
   return (
     <Stack.Screen
       options={{

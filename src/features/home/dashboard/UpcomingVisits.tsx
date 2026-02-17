@@ -3,7 +3,6 @@ import { formatDateTime } from "@/helpers/dates";
 import { doctorTypeTranslationKeys } from "@/helpers/enums";
 import { DoctorProfession } from "@/types/Visit";
 import { router } from "expo-router";
-import { CalendarClockIcon, HandIcon, StethoscopeIcon } from "lucide-react-native";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { ActivityIndicator, View } from "react-native";
@@ -36,14 +35,14 @@ export default function UpcomingVisits() {
           visits.map(visit => (
             <ContainerCard
               key={visit.id}
-              Icon={
+              icon={
                 visit.doctor.profession === DoctorProfession.Physiotherapist
-                  ? HandIcon
-                  : StethoscopeIcon
+                  ? "Hand"
+                  : "Stethoscope"
               }
               title={t(doctorTypeTranslationKeys[visit.doctor.profession])}
               subtitle={`${visit.doctor.name}`}
-              description={<IconText text={formatDateTime(visit.date)} icon={CalendarClockIcon} />}
+              description={<IconText text={formatDateTime(visit.date)} icon={"CalendarClock"} />}
               onPress={() =>
                 router.push({
                   pathname: "/standalone/visit-details",

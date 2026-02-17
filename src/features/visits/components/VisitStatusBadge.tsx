@@ -26,9 +26,9 @@ export default function VisitStatusBadge({ status, className, ...rest }: VisitSt
   };
 
   return (
-    <View {...rest} className={clsx(classNamesBadge, className, "px-2 py-4 rounded-full")}>
+    <View {...rest} className={clsx(classNamesBadge, className, "px-2 py-2 rounded-full")}>
       <TextStyled
-        type="bold"
+        variant="heading"
         className={clsx(classNamesText, "text-center text-sm truncate")}
         numberOfLines={1}>
         {t(visitStatusTranslationKeys[status])}

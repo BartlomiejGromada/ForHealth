@@ -19,8 +19,8 @@ export const useVisitDelete = () => {
   const deleteVisit = useCallback(
     async (visitId: string) => {
       openInformationModal({
-        title: t("visits.deleting-visit"),
-        message: t("visits.deleting-visit-message"),
+        title: t("visits:deleting-visit"),
+        message: t("visits:deleting-visit-message"),
       });
 
       return await deleteVisitByIdRequest({
@@ -46,7 +46,7 @@ export const useVisitDelete = () => {
     onMutation: deleteVisit,
     onSuccess: {
       funtion: handleFetchSuccess,
-      text: t("visits.visit-deleted-successfully"),
+      text: t("visits:visit-deleted-successfully"),
     },
     i18nNamespace: "visits",
   });
